@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Atleta</title>
+	<link rel="stylesheet" href="/stile.css?version=2" />
+</head>
+
+<body>
+	<div><a href="/"><img src="/logo-serie-a.png" width="50%"/></a></div>
+	<h1>Atleta</h1>
+	<div th:if="${atleti.isEmpty()}">Non ci sono atleti nel sistema</div>
+	<ul>
+		<li th:each="atleta : ${atleti}">
+			<a th:href="@{'/atleti' + '/' + ${atleta.id}}"
+				th:text="${atleta.nome} + ' (' + ${atleta.numeroDiMaglia} + ')' + ${atleta.team}">Francesco Totti(10) Roma</a>
+		</li>
+	</ul>
+</body>
+
+</html>
