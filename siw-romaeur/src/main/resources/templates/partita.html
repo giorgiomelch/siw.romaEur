@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Partita</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	
+
+    <h1>Dettagli Partita</h1>
+    <div th:if="${partita}">
+		        <span th:text="'Roma Eur: ' + ${partita.getPunteggioA()}">Roma Eur: punteggio</span>
+		        <div th:text="${partita.getNomeSquadraAvversaria()} + ': ' + ${partita.getPunteggioB()}">Squadra avversaria: punteggio</div>
+		             
+    </div>
+    <div th:unless="${partita}">Non esiste</div>
+  </body>
+</html>
