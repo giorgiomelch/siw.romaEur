@@ -11,10 +11,10 @@ import it.romaeur.siw.repository.GiocatoreRepository;
 public class GiocatoreController {
 	@Autowired GiocatoreRepository giocatoreRepository; 
 	
-	@GetMapping("/roaster")
-	public String roaster(Model model) {
-		model.addAttribute("roaster", this.giocatoreRepository.findAll());
-		return "roaster.html";
+	@GetMapping("/roster")
+	public String roster(Model model) {
+		model.addAttribute("roster", this.giocatoreRepository.findAll());
+		return "roster.html";
 	}
 
 }
