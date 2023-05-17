@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Nuova Partita
+	</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	
+	<h1>Aggiungi una partita</h1>
+	<form th:action="@{/giocatore}" method="POST" th:object="${giocatore}">
+		<div>
+			<label>Nome: </label> 
+			<span><input type="text" th:field="${giocatore.nome}" /></span>
+		</div>
+
+		<div>
+			<label>cognome: </label> 
+			<span><input type="text" th:field="${giocatore.cognome}" /></span>
+		</div>
+		
+		<div>
+			<label>Data di nascita: </label>
+			<span><input type="date" th:field="${giocatore.dataDiNascita}" /></span>
+		</div>
+		
+		<div>
+		     <label for="giocatore.ruolo">Ruolo:</label>
+			 <select id="giocatore.ruolo" name="ruolo">
+			    <option value="Playmaker">Playmaker</option>
+			    <option value="Guardia tiratrice">Guardia tiratrice</option>
+			    <option value="Ala piccola">Ala piccola</option>
+			    <option value="Ala grande">Ala grande</option>
+			    <option value="Centro">Centro</option>
+			 </select>
+		</div>
+		
+		<div>
+			<label>Numero maglia: </label> 
+			<span><input type="text" th:field="${giocatore.numeroMaglia}" /></span>
+		</div>
+		
+		<div>
+			<label>URL immagine: </label> 
+			<span><input type="text" th:field="${giocatore.srcImagine}" /></span>
+		</div>		
+		
+		<div>
+			<span><button type="submit">Conferma</button></span>
+		</div>
+	</form>
+</body>
+
+</html>

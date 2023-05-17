@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Giocatore</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	
+	<h1>Giocatore</h1>
+    <div th:if="${giocatore}">
+        <span th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}"></span>
+        <span th:text="'(' + ${giocatore.dataDiNascita} + ')'"></span>
+    </div>
+    <div th:unless="${giocatore}">Non esiste</div>
+  </body>
+	
+  </body>
+</html>

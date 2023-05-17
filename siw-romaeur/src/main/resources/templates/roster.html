@@ -12,11 +12,15 @@
 	<h1>Roster</h1>
 	<div th:if="${roster==null || roster.isEmpty()}">Non ci sono giocatori nel sistema</div>
 	<ul>
-		<li th:each="athlete : ${roster}">
-			<a th:href="@{'/athlete' + '/' + ${athlete.id}}"
-				th:text="${athlete.name} + ' ' + ${athlete.surname}"></a>
+		<li th:each="giocatore : ${roster}">
+			<a th:href="@{'/giocatore' + '/' + ${giocatore.id}}"
+				th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}"></a>
 		</li>
 	</ul>
+	
+	<div><a th:href="@{/formNewGiocatore}">Aggiungi giocatore</a>
+	</div>
+	
 </body>
 
 </html>
