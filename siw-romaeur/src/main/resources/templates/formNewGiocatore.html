@@ -3,14 +3,14 @@
 
 <head>
 	<title>
-		Nuova Partita
+		Nuovo giocatore
 	</title>
-	<link rel="stylesheet" href="/css/stile.css" />
+	<link rel="stylesheet" href="/css/stileRomaEur1.css" />
 </head>
 
 <body>
 	
-	<h1>Aggiungi una partita</h1>
+	<h1>Aggiungi un giocatore</h1>
 	<form th:action="@{/giocatore}" method="POST" th:object="${giocatore}">
 		<div>
 			<label>Nome: </label> 
@@ -45,7 +45,7 @@
 		
 		<div>
 			<label>URL immagine: </label> 
-			<span><input type="text" th:field="${giocatore.srcImagine}" /></span>
+			<span><input type="text" th:field="${giocatore.srcImage}" /></span>
 		</div>		
 		
 		<div>

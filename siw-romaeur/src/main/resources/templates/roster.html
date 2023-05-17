@@ -3,11 +3,11 @@
 
 <head>
 	<title>Roster</title>
-	<link rel="stylesheet" href="/css/stile.css" />
+	<link rel="stylesheet" href="/css/stileRomaEur1.css" />
 </head>
 
 <body>
-
+	<header></header>
 	
 	<h1>Roster</h1>
 	<div th:if="${roster==null || roster.isEmpty()}">Non ci sono giocatori nel sistema</div>
@@ -21,6 +21,7 @@
 	<div><a th:href="@{/formNewGiocatore}">Aggiungi giocatore</a>
 	</div>
 	
+	<footer></footer>
 </body>
 
 </html>
