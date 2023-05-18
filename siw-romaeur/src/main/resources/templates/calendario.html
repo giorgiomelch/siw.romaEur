@@ -15,7 +15,7 @@
 	<ul>
 		<li th:each="partita : ${calendario}">
 			<a th:href="@{'/partita' + '/' + ${partita.id}}"
-				th:text="'RomaEur' + ' ' + ${partita.getPunteggioA()} + '-' + ${partita.getPunteggioB()} + ' ' + ${partita.getNomeSquadraAvversaria()} ">Roma eur:0 </a>
+				th:text="'RomaEur' + ' ' + ${partita.getPunteggioA()} + '-' + ${partita.getPunteggioB()} + ' ' + ${partita.getNomeSquadraAvversaria()} + ' ' + ${partita.data}">Roma eur:0 </a>
 		</li>
 	</ul>
 	
