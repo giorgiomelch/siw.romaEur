@@ -9,6 +9,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Giocatore {
@@ -17,10 +21,17 @@ public class Giocatore {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
 	
+	@NotBlank
 	private String nome;
+	@NotBlank
 	private String cognome;
+	@NotNull
 	private LocalDate dataDiNascita;
+	@NotNull
 	private String ruolo; 	
+	@NotNull
+	@Min(0)
+	@Max(99)
 	private int numeroMaglia;
 	private String srcImage;
 	@OneToMany(mappedBy= "giocatore")
