@@ -26,13 +26,15 @@ public class PrestazioneController {
 
 	@GetMapping("/formNuovaPrestazione/{partitaId}")
 	public String formNuovaPrestazione(@PathVariable("partitaId") Long partitaId, Model model) {
+		Partita partita = this.partitaRepository.findById(partitaId).get();
+		model.addAttribute("partita",partita);
 		model.addAttribute("prestazione", new Prestazione());
 		return "formNuovaPrestazione.html";
 	}
 
 	@Transactional
-	@PostMapping("/prestazione/{idPartita}")
-	public String newPrestazione(@ModelAttribute("prestazione") Prestazione prestazione,@PathVariable("idPartita") Long idPartita, Model model) {
+	@PostMapping("prestazione/{idPartita}")
+	public String newPrestazione(@PathVariable("idPartita") Long idPartita, @ModelAttribute("prestazione") Prestazione prestazione, Model model) {
 		Partita partita = this.partitaRepository.findById(idPartita).get();    
 		prestazione.setPartita(partita);
 		model.addAttribute("prestazione", prestazione);

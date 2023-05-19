@@ -47,7 +47,9 @@ public class PartitaController {
 	
 	@GetMapping("/partita/{id}")
 	public String getPartita(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("partita", this.partitaRepository.findById(id).get());
+		Partita partita = this.partitaRepository.findById(id).get();
+		model.addAttribute("partita", partita);
+		model.addAttribute("prestazioni",partita.getPrestazioni());
 		return "partita.html";
 	}
 	
