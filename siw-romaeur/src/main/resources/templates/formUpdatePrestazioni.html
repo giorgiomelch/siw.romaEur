@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+	<title>
+		Aggiungi artista
+	</title>
+	<link rel="stylesheet" href="/css/stileGenerale.css" />
+</head>
+<body>
+	
+    <div th:if="${partita}">
+	    <h1 th:text="${partita.nomeSquadraAvversaria}">squadra avversaria</h1>
+    </div>
+    <div th:unless="${partita}">Non esiste la partita</div>
+    <div><a>Giocatori presenti alla partita: </a>
+    	<ul>
+			<li th:each="giocatorePresente : ${partita.prestazioni}">
+				<div>
+					<a th:text="${giocatorePresente.nome} + ' ' + ${giocatorePresente.cognome}"></a>
+					<a th:href="@{'/removeGiocatoreFromPartita'+'/'+${giocatorePresente.id}+'/'+${partita.id}}">cancella</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div><a>Giocatori che puoi aggiungere alla partita: </a>
+		<ul>
+			<li th:each="giocatoreAssente : ${giocatoriAssenti}">
+				<div>
+					<a th:text="${giocatoreAssente.nome} + ' ' + ${giocatoreAssente.cognome}"></a>
+					<a th:href="@{'/addGiocatoreToPartita'+'/'+${giocatoreAssente.id}+'/'+${partita.id}}">aggiungi</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<a th:href="@{'/partita' + '/' + ${partita.id}}">Fine</a>
+  </body>
+</html>

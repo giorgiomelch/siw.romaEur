@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.romaeur.siw.controller.validator.PartitaValidator;
 import it.romaeur.siw.model.Partita;
+import it.romaeur.siw.repository.GiocatoreRepository;
 import it.romaeur.siw.repository.PartitaRepository;
 import jakarta.validation.Valid;
 
@@ -19,6 +20,7 @@ public class PartitaController {
 	
 	@Autowired PartitaRepository partitaRepository; 
 	@Autowired PartitaValidator partitaValidator;
+	@Autowired GiocatoreRepository giocatoreRepository;
 	
 	@GetMapping("/calendario")
 	public String calendario(Model model) {
@@ -49,5 +51,12 @@ public class PartitaController {
 		return "partita.html";
 	}
 
+	@GetMapping("/formUpdatePartita/{id}")
+	public String formUpdatePartita(@PathVariable("id") Long id, Model model) {
+		Partita partita=  this.partitaRepository.findById(id).get();
+		model.addAttribute("partita", partita);
+		model.addAttribute("giocatoriAssenti", this.giocatoreRepository.findAllExcept(partita.getGiocatoriDellaPartita()));
+		return "formUpdatePrestazioni.html";
+	}
 
 }

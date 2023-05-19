@@ -9,4 +9,4 @@ import it.romaeur.siw.model.Partita;
 public interface PartitaRepository extends CrudRepository<Partita,Long> {
 
 	public boolean existsByNomeSquadraAvversariaAndData(String nomeSquadraAvversaria, LocalDate data);
-}
+	}

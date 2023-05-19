@@ -1,6 +1,7 @@
 package it.romaeur.siw.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,6 +31,16 @@ public class Partita {
 	private LocalDate data;
 	@OneToMany(mappedBy="partita")
 	private List<Prestazione>prestazioni;
+	
+	
+	public List <Giocatore>getGiocatoriDellaPartita() {
+		ArrayList<Giocatore> giocatoriDellaPartita= new ArrayList<Giocatore>();
+		for(Prestazione p : this.getPrestazioni())
+			giocatoriDellaPartita.add(p.getGiocatore());
+		return giocatoriDellaPartita;
+		
+	}
+	
 	public Long getId() {
 		return id;
 	}
