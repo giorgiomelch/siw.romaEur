@@ -48,6 +48,8 @@ public class PartitaController {
 		model.addAttribute("partita", this.partitaRepository.findById(id).get());
 		return "partita.html";
 	}
+	
+	
 
 
 }
