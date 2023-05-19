@@ -12,27 +12,29 @@
 	
 	<h1>Aggiungi una partita</h1>
 	<form th:action="@{/partita}" method="POST" th:object="${partita}">
-  		
+  		<div th:if="${#fields.hasGlobalErrors()}">
+			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
 		
 		<div>
 			<label>Nome squadra avversaria:</label> 
 			<span><input type="text" th:field="${partita.nomeSquadraAvversaria}" /></span>
-		    </span>
+		    <span th:if="${#fields.hasErrors('nomeSquadraAvversaria')}" th:errors="*{nomeSquadraAvversaria}"></span>
 		</div>
 
 		<div>
 			<label>Punteggio Roma Eur:</label> <span><input type="text" th:field="${partita.punteggioA}" /></span>
-		    </span>
+		    <span th:if="${#fields.hasErrors('punteggioA')}" th:errors="*{punteggioA}"></span>
 		</div>
 		
 		<div>
 			<label>Punteggio squadra avversaria:</label> <span><input type="text" th:field="${partita.punteggioB}" /></span>
-		    </span>
+		    <span th:if="${#fields.hasErrors('punteggioB')}" th:errors="*{punteggioB}"></span>
 		</div>
 		
 		<div>
 			<label>Data:</label> <span><input type="date" th:field="${partita.data}" /></span>
-		    </span>
+		    <span th:if="${#fields.hasErrors('data')}" th:errors="*{data}"></span>
 		</div>
 
 		

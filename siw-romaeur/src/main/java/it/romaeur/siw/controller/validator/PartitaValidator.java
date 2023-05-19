@@ -23,7 +23,7 @@ public class PartitaValidator implements Validator {
 		if(partita.getNomeSquadraAvversaria()!=null && partita.getData()!=null && 
 				this.partitaRepository.existsByNomeSquadraAvversariaAndData
 				(partita.getNomeSquadraAvversaria(), partita.getData()))
-			errors.reject("giocatore.duplicate");
+			errors.reject("partita.duplicate");
 	}
 
 }
