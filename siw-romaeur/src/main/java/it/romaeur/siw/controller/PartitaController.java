@@ -50,6 +50,8 @@ public class PartitaController {
 		model.addAttribute("partita", this.partitaRepository.findById(id).get());
 		return "partita.html";
 	}
+	
+	
 
 	@GetMapping("/formUpdatePartita/{id}")
 	public String formUpdatePartita(@PathVariable("id") Long id, Model model) {
