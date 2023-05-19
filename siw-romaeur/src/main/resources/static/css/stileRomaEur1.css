@@ -40,3 +40,8 @@ footer{
 	bottom: 0;
   	width: 98.5%;
 }
+label {
+	width: 8em;
+	display: inline-block;
+}
+

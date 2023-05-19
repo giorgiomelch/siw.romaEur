@@ -8,13 +8,17 @@
 <body>
 	<header></header>
 	
-	<h1>Giocatore</h1>
     <div th:if="${giocatore}">
-        <span th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}"></span>
+        <h1 th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}"></h1>
         <span th:text="'(' + ${giocatore.dataDiNascita} + ')'"></span>
     </div>
-    <div th:unless="${giocatore}">Non esiste</div>
-  </body>
-	
+   <div th:unless="${giocatore}">Non esiste</div>
+    
+	<h1>Statistiche</h1>
+    
+    
+    
+    
+    <footer></footer>
   </body>
 </html>
