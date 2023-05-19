@@ -7,7 +7,7 @@
 
 <body>
 	
-	<div><a href="/"><img src="/images/logo-siw.png" width="20%"/></a></div>
+	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
 
     <h1>Dettagli Partita</h1>
     
@@ -19,12 +19,24 @@
     <div th:unless="${partita}">Non esiste</div>
     
     
-    	<div><a href="/calendario"><button>Calendario</button></a></div>
+    <h1>Tabellino</h1>
+	<div th:if="${prestazioni==null || prestazioni.isEmpty()}">Il tabellino della partita non è ancora disponibile</div>
+	<ul>
+		<li th:each="prestazione : ${prestazioni}">
+			<div th:text="${prestazione.punti} + ${prestazione.assist} + ${prestazione.rimbalzi}">25 10 10</div>
+		</li>
+	</ul>
+    
+    
     	
     	
     	<div>
-		<a href="/formNuovaPrestazione">Inserisci nuova prestazione</a>
+		<a th:href="@{'/formNuovaPrestazione/' + ${partita.id}}">Inserisci nuova prestazione</a>
 	</div>
+	
+	
+	  <div><a href="/calendario"><button>Calendario</button></a></div>
+
 
   </body>
 </html>

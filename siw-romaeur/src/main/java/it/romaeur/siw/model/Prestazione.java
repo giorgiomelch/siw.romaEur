@@ -26,6 +26,9 @@ public class Prestazione {
 	private Partita partita;
 	
 	
+	
+	
+	
 	public Long getId() {
 		return id;
 	}

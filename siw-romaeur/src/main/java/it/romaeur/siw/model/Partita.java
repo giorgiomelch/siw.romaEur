@@ -33,6 +33,13 @@ public class Partita {
 	private List<Prestazione>prestazioni;
 	
 	
+	
+	
+	
+	public Partita() {
+		this.prestazioni = new ArrayList<>();
+	}
+
 	public List <Giocatore>getGiocatoriDellaPartita() {
 		ArrayList<Giocatore> giocatoriDellaPartita= new ArrayList<Giocatore>();
 		for(Prestazione p : this.getPrestazioni())

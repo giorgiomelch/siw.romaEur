@@ -8,7 +8,7 @@
 
 <body>
 <h1>Aggiungi una prestazione</h1>
-	<form th:action="@{/prestazione}" method="POST" th:object="${prestazione}">
+	<form th:action="@{'/prestazione/' + ${prestazione.getPartita().getId()}}" method="POST" th:object="${prestazione}">
   		
 		
 		<div>
