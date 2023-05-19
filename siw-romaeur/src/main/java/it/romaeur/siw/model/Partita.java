@@ -9,16 +9,24 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Partita {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	
+	@NotNull
+	@Min(0)
 	private int punteggioA;
+	@NotNull
+	@Min(0)
 	private int punteggioB;
+	@NotBlank
 	private String nomeSquadraAvversaria;
+	@NotNull
 	private LocalDate data;
 	@OneToMany(mappedBy="partita")
 	private List<Prestazione>prestazioni;
