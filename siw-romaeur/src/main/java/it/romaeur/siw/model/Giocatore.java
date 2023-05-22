@@ -35,7 +35,7 @@ public class Giocatore {
 	private int numeroMaglia;
 	private String srcImage;
 	@OneToMany(mappedBy= "giocatore")
-	private List<Prestazione> prestazione;
+	private List<Prestazione> prestazioni;
 	public Long getId() {
 		return id;
 	}
@@ -78,11 +78,11 @@ public class Giocatore {
 	public void setSrcImage(String srcImage) {
 		this.srcImage = srcImage;
 	}
-	public List<Prestazione> getPrestazione() {
-		return prestazione;
+	public List<Prestazione> getPrestazioni() {
+		return prestazioni;
 	}
-	public void setPrestazione(List<Prestazione> prestazione) {
-		this.prestazione = prestazione;
+	public void setPrestazioni(List<Prestazione> prestazioni) {
+		this.prestazioni = prestazioni;
 	}
 	@Override
 	public int hashCode() {
