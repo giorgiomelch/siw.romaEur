@@ -59,7 +59,8 @@ public class PartitaController {
 	public String formUpdatePartita(@PathVariable("id") Long id, Model model) {
 		Partita partita=  this.partitaRepository.findById(id).get();
 		model.addAttribute("partita", partita);
-		model.addAttribute("giocatoriAssenti", this.giocatoreRepository.findAllExcept(partita.getGiocatoriDellaPartita()));
+		model.addAttribute("giocatoriPresenti", partita.getGiocatoriDellaPartita());
+		model.addAttribute("giocatoriAssenti", this.giocatoreRepository.findAll()); //Per ora mostro tutti i giocatori (la query findAllExcept non funziona)
 		return "formUpdatePrestazioni.html";
 	}
 

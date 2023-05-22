@@ -13,10 +13,10 @@
     <div th:unless="${partita}">Non esiste la partita</div>
     <div><a>Giocatori presenti alla partita: </a>
     	<ul>
-			<li th:each="giocatorePresente : ${partita.prestazioni}">
+			<li th:each="giocatorePresente : ${giocatoriPresenti}">
 				<div>
 					<a th:text="${giocatorePresente.nome} + ' ' + ${giocatorePresente.cognome}"></a>
-					<a th:href="@{'/removeGiocatoreFromPartita'+'/'+${giocatorePresente.id}+'/'+${partita.id}}">cancella</a>
+					<a th:href="@{'/removeGiocatoreFromPartita'+'/'+${partita.id}+'/'+${giocatorePresente.id}}">cancella</a>
 				</div>
 			</li>
 		</ul>
@@ -26,7 +26,7 @@
 			<li th:each="giocatoreAssente : ${giocatoriAssenti}">
 				<div>
 					<a th:text="${giocatoreAssente.nome} + ' ' + ${giocatoreAssente.cognome}"></a>
-					<a th:href="@{'/addGiocatoreToPartita'+'/'+${giocatoreAssente.id}+'/'+${partita.id}}">aggiungi</a>
+					<a th:href="@{'/formNuovaPrestazione'+'/'+${partita.id}+'/'+${giocatoreAssente.id}}">aggiungi</a>
 				</div>
 			</li>
 		</ul>

@@ -12,9 +12,8 @@
     <h1>Dettagli Partita</h1>
     
     <div th:if="${partita}">
-		        <span th:text="'Roma Eur: ' + ${partita.getPunteggioA()} + '-' + ${partita.getPunteggioB()} + ' ' + ${partita.getNomeSquadraAvversaria()}">Roma Eur: punteggio</span>
-		        <span th:text="${partita.getData()}"></span>
-
+       <span th:text="'Roma Eur: ' + ${partita.getPunteggioA()} + '-' + ${partita.getPunteggioB()} + ' ' + ${partita.getNomeSquadraAvversaria()}">Roma Eur: punteggio</span>
+       <span th:text="${partita.getData()}"></span>
     </div>
     <div th:unless="${partita}">Non esiste</div>
     
@@ -23,15 +22,14 @@
 	<div th:if="${prestazioni==null || prestazioni.isEmpty()}">Il tabellino della partita non è ancora disponibile</div>
 	<ul>
 		<li th:each="prestazione : ${prestazioni}">
-			<div th:text="'Punti: ' + ${prestazione.punti} + 'Assist: ' +  ${prestazione.assist} + 'Rimbalzi: ' + ${prestazione.rimbalzi}">25 10 10</div>
+			<div th:text="${prestazione.giocatore.nome} + ' ' + ${prestazione.giocatore.cognome}"> </div>
+			<div th:text="'Punti: ' + ${prestazione.punti} + 'Assist: ' +  ${prestazione.assist} + 
+				'Rimbalzi: ' + ${prestazione.rimbalzi}">25 10 10
+			</div>
 		</li>
 	</ul>
-    
-    
-    	
-    	
-    	<div>
-		<a th:href="@{'/formNuovaPrestazione/' + ${partita.id}}">Inserisci nuova prestazione</a>
+    <div>
+		<a th:href="@{'/formUpdatePartita/' + ${partita.id}}">Inserisci nuova prestazione</a>
 	</div>
 	
 	

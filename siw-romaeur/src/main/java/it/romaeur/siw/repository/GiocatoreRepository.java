@@ -15,4 +15,5 @@ public interface GiocatoreRepository extends CrudRepository<Giocatore,Long>{
 	
 	@Query("SELECT o FROM Giocatore o WHERE o NOT IN :giocatoriDaEsculedere")
     public List<Giocatore> findAllExcept(@Param("giocatoriDaEsculedere") List<Giocatore> giocatoriDaEsculedere);
+	
 }

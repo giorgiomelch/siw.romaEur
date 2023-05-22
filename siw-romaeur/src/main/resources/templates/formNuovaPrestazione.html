@@ -8,10 +8,11 @@
 
 <body>
 	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
-<h1>Aggiungi una prestazione</h1>
-	<form th:action="@{'/prestazione/' + ${partita.id}}" method="POST" th:object="${prestazione}">
-  		
-		
+	<h1 th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}"></h1>
+	<h1 th:text="${partita.nomeSquadraAvversaria} "></h1>
+	<h1>Aggiungi una prestazione</h1>
+	
+	<form th:action="@{'/prestazione/' + ${partita.id} + '/'+ ${giocatore.id}}" method="POST" th:object="${prestazione}">
 		<div>
 			<label>Punti:</label> 
 			<span><input type="text" th:field="${prestazione.punti}" /></span>
