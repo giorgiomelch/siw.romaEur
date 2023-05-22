@@ -23,7 +23,7 @@
 	<div th:if="${prestazioni==null || prestazioni.isEmpty()}">Il tabellino della partita non è ancora disponibile</div>
 	<ul>
 		<li th:each="prestazione : ${prestazioni}">
-			<div th:text="'${prestazione.punti}' + '${prestazione.assist}' + '${prestazione.rimbalzi}'">25 10 10</div>
+			<div th:text="'Punti: ' + ${prestazione.punti} + 'Assist: ' +  ${prestazione.assist} + 'Rimbalzi: ' + ${prestazione.rimbalzi}">25 10 10</div>
 		</li>
 	</ul>
     
