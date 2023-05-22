@@ -14,5 +14,5 @@ public interface GiocatoreRepository extends CrudRepository<Giocatore,Long>{
 	public boolean existsByNomeAndCognomeAndDataDiNascita(String nome, String cognome, LocalDate dataDiNascita);
 	
 	@Query("SELECT o FROM Giocatore o WHERE o NOT IN :giocatoriDaEsculedere")
-    List<Giocatore> findAllExcept(@Param("giocatoriDaEsculedere") List<Giocatore> giocatoriDaEsculedere);
+    public List<Giocatore> findAllExcept(@Param("giocatoriDaEsculedere") List<Giocatore> giocatoriDaEsculedere);
 }
