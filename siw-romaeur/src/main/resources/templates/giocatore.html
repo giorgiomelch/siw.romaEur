@@ -2,23 +2,63 @@
 <html>
   <head>
     <title>Giocatore</title>
-	<link rel="stylesheet" href="/css/stileRomaEur1.css" />
+	<link rel="stylesheet" href="/css/bio.css" />
 </head>
 
 <body>
-	<header></header>
-	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
-    <div th:if="${giocatore}">
-        <h1 th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}"></h1>
-        <span th:text="'(' + ${giocatore.dataDiNascita} + ')'"></span>
+	
+	<header class = "header">
+		<div class = "utente" th:text="Ciao"></div>
+	</header>
+	
+	
+	<div class = "sidebar"><a href="/"><img src="/images/logo-Roma-Eur.png" width="100%"/></a>
+	<div>Menu Item 1</div>
+	
+	</div>
+	
+	
+    
+
+    
+   
+   
+    <div class = "bio" th:if="${giocatore}">
+		
+    <div class = "bioInfo">
+		<h1 th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}">Gianluca Proietti</h1>
+        <div th:text="'Data di nascita: ' + ${giocatore.dataDiNascita}">01/01/2000</div>
+        <div th:text="'Ruolo: ' + ${giocatore.ruolo}">Centro</div>
+        <span th:text="${giocatore.numeroMaglia}">13</span>
     </div>
+		
+	<div class = "bioPic"><img width="30%" th:src=${giocatore.srcImage} /></div>
+
    <div th:unless="${giocatore}">Non esiste</div>
+	
+
+    </div>
+<h2>Statistiche</h2>
+
+<h2>Lorem ipsum</h2>
+<h2>Lorem ipsum</h2>
+<h2>Lorem ipsum</h2>
+<h2>Lorem ipsum</h2>
+<h2>Lorem ipsum</h2>
+<h2>Lorem ipsum</h2>
+<h2>Lorem ipsum</h2>
+<h2>Lorem ipsum</h2>
+<h2>Lorem ipsum</h2>
+<h2>Lorem ipsum</h2>
+<h2>Lorem ipsum</h2>
+<h2>Lorem ipsum</h2>
+
+
+
     
-	<h1>Statistiche</h1>
     
     
-    
-    
+    		
     <footer></footer>
   </body>
 </html>
