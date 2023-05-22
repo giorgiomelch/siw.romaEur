@@ -23,6 +23,7 @@
 	<ul>
 		<li th:each="prestazione : ${prestazioni}">
 			<div th:text="${prestazione.giocatore.nome} + ' ' + ${prestazione.giocatore.cognome}"> </div>
+			
 			<div th:text="'Punti: ' + ${prestazione.punti} + 'Assist: ' +  ${prestazione.assist} + 
 				'Rimbalzi: ' + ${prestazione.rimbalzi}">25 10 10
 			</div>

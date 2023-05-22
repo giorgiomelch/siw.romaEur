@@ -49,14 +49,40 @@ public class PrestazioneController {
 		this.prestazioneRepository.save(prestazione); 
 		
 		model.addAttribute("partita", partita);
-		model.addAttribute("giocatoriPresenti", partita.getGiocatoriDellaPartita());
+		model.addAttribute("prestazioni", partita.getPrestazioni());
 		model.addAttribute("giocatoriAssenti", this.giocatoreRepository.findAll());//Per ora mostro tutti i giocatori (la query findAllExcept non funziona)
 		
 
 		return "formUpdatePrestazioni.html";
 	} 
 
+	@GetMapping("formConfirmDeletePrestazione/{idPrestazione}")
+	public String formConfirmDeletePrestazione(@PathVariable ("idPrestazione") Long idPrestazione, Model model) {
+		Prestazione prestazione = this.prestazioneRepository.findById(idPrestazione).get();
+		model.addAttribute("prestazione",prestazione);
+		return "formConfirmDeletePrestazione.html";
+	}
+	@GetMapping("deletePrestazione/{idPrestazione}")
+	public String deletePrestazione(@PathVariable ("idPrestazione") Long idPrestazione, Model model) {
+		Prestazione prestazione = this.prestazioneRepository.findById(idPrestazione).get();
+		Partita partita= prestazione.getPartita();
+		partita.getPrestazioni().remove(prestazione);
+		this.partitaRepository.save(partita);
+		
+		Giocatore giocatore= prestazione.getGiocatore();
+		giocatore.getPrestazioni().remove(prestazione);
+		this.giocatoreRepository.save(giocatore);
+		
+		this.prestazioneRepository.delete(prestazione);	
+		
+		model.addAttribute("partita", partita);
+		model.addAttribute("prestazioni", partita.getPrestazioni());
+		model.addAttribute("giocatoriAssenti", this.giocatoreRepository.findAll());
+		
+		return "formUpdatePrestazioni.html";
+	}
 
+	
 
 
 }

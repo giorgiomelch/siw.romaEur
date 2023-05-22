@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Form confirm to delete film
+	</title>
+	<link rel="stylesheet" href="/css/stileGenerale.css" />
+</head>
+
+<body>
+	
+	
+	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
+	
+	<div>
+		<span>Sicuro di voler cancellare la prestazione: </span>
+		<div th:text="${prestazione.giocatore.nome} + ' ' + ${prestazione.giocatore.cognome} + ' (' + ${prestazione.partita.nomeSquadraAvversaria} + ')'"></div>
+		<div th:text="'Punti: ' + ${prestazione.punti} + 'Assist: ' +  ${prestazione.assist} + 
+				'Rimbalzi: ' + ${prestazione.rimbalzi}">25 10 10
+		</div>
+	</div>
+	
+	<a th:href="@{'/deletePrestazione/' + ${prestazione.id}}">Conferma</a>
+	
+	
+</body>
+
+</html>
