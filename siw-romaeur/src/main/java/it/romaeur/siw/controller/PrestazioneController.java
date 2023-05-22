@@ -40,9 +40,11 @@ public class PrestazioneController {
 	public String newPrestazione(@ModelAttribute("prestazione") Prestazione prestazione ,
 			@PathVariable("idPartita") Long idPartita ,@PathVariable("idGiocatore") Long idGiocatore ,  Model model) {
 		
-		Partita partita = this.partitaRepository.findById(idPartita).get();   
+		Partita partita = this.partitaRepository.findById(idPartita).get();
+		partita.getPrestazioni().add(prestazione);
 		prestazione.setPartita(partita);
 		Giocatore giocatore= this.giocatoreRepository.findById(idGiocatore).get(); 
+		giocatore.getPrestazioni().add(prestazione);
 		prestazione.setGiocatore(giocatore);
 		this.prestazioneRepository.save(prestazione); 
 		

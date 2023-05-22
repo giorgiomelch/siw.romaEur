@@ -16,7 +16,7 @@
 			<li th:each="giocatorePresente : ${giocatoriPresenti}">
 				<div>
 					<a th:text="${giocatorePresente.nome} + ' ' + ${giocatorePresente.cognome}"></a>
-					<a th:href="@{'/removeGiocatoreFromPartita'+'/'+${partita.id}+'/'+${giocatorePresente.id}}">cancella</a>
+					<a th:href="@{'/removePrestazioneFromPartita'+'/'+${partita.id}+'/'+${giocatorePresente.id}}">cancella</a>
 				</div>
 			</li>
 		</ul>
