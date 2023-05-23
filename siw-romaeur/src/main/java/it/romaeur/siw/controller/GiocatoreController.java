@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import it.romaeur.siw.controller.validator.GiocatoreValidator;
 import it.romaeur.siw.model.Giocatore;
 import it.romaeur.siw.repository.GiocatoreRepository;
+import it.romaeur.siw.repository.PrestazioneRepository;
 import jakarta.validation.Valid;
 
 @Controller
 public class GiocatoreController {
 	
 	@Autowired GiocatoreRepository giocatoreRepository; 
+	@Autowired PrestazioneRepository prestazioneRepository;
 	@Autowired GiocatoreValidator giocatoreValidator;
 
 	@GetMapping("/roster")
@@ -29,6 +31,7 @@ public class GiocatoreController {
 	@GetMapping("/giocatore/{id}")
 	public String getGiocatore(@PathVariable ("id") Long id, Model model) {
 		model.addAttribute("giocatore", this.giocatoreRepository.findById(id).get());
+		model.addAttribute("prestazioni",this.prestazioneRepository.findByIdGiocatore(id));
 		return "giocatore.html";
 	}
 	

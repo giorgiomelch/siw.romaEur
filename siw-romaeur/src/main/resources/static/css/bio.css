@@ -40,6 +40,10 @@ footer{
 	color: white;
   	height: 30px;
   	width: 100%;
+  	position: static;
+  	left: 0;
+  	bottom: 0
+  	;
 }
 
 
@@ -60,6 +64,16 @@ h2{
 	justify-content: center;
 }
 
+.tabellino{
+	display: flex;
+	justify-content: center;
+	}
+
+.riquadro{
+	background-color: white;
+	height: 500px;
+	width: 100%;
+}
 
 
 .bio{

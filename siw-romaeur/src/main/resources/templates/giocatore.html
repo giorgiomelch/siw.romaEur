@@ -40,19 +40,25 @@
     </div>
 <h2>Statistiche</h2>
 
-<h2>Lorem ipsum</h2>
-<h2>Lorem ipsum</h2>
-<h2>Lorem ipsum</h2>
-<h2>Lorem ipsum</h2>
-<h2>Lorem ipsum</h2>
-<h2>Lorem ipsum</h2>
-<h2>Lorem ipsum</h2>
-<h2>Lorem ipsum</h2>
-<h2>Lorem ipsum</h2>
-<h2>Lorem ipsum</h2>
-<h2>Lorem ipsum</h2>
-<h2>Lorem ipsum</h2>
 
+<div class = "tabellino">
+<ul>
+		<li th:each="prestazione : ${prestazioni}">
+			<span class = "riga" th:text="${prestazione.punti} + ' ' + ${prestazione.assist}"></span>
+		</li>
+	</ul>
+	</div>
+	
+	<div class = "riquadro">
+
+<h2>Statistiche</h2>
+<h2>Statistiche</h2>
+<h2>Statistiche</h2>
+<h2>Statistiche</h2>
+<h2>Statistiche</h2>
+
+
+</div>
 
 
     
