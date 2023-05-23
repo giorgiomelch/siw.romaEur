@@ -36,6 +36,7 @@ public class Giocatore {
 	private String srcImage;
 	@OneToMany(mappedBy= "giocatore")
 	private List<Prestazione> prestazioni;
+	
 	public Long getId() {
 		return id;
 	}

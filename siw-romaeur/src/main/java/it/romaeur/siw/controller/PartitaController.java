@@ -60,7 +60,10 @@ public class PartitaController {
 		Partita partita=  this.partitaRepository.findById(id).get();
 		model.addAttribute("partita", partita);
 		model.addAttribute("prestazioni", partita.getPrestazioni());
-		model.addAttribute("giocatoriAssenti", this.giocatoreRepository.findAll()); //Per ora mostro tutti i giocatori (la query findAllExcept non funziona)
+		if(partita.getGiocatoriDellaPartita().isEmpty())
+			model.addAttribute("giocatoriAssenti", this.giocatoreRepository.findAll());
+		else
+			model.addAttribute("giocatoriAssenti", this.giocatoreRepository.findAllExcept(partita.getGiocatoriDellaPartita()));
 		return "formUpdatePrestazioni.html";
 	}
 
