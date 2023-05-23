@@ -50,7 +50,7 @@ public class PrestazioneController {
 		
 		model.addAttribute("partita", partita);
 		model.addAttribute("prestazioni", partita.getPrestazioni());
-		model.addAttribute("giocatoriAssenti", this.giocatoreRepository.findAll());//Per ora mostro tutti i giocatori (la query findAllExcept non funziona)
+		model.addAttribute("giocatoriAssenti", this.giocatoreRepository.findAllExcept(partita.getGiocatoriDellaPartita()));//Per ora mostro tutti i giocatori (la query findAllExcept non funziona)
 		
 
 		return "formUpdatePrestazioni.html";
