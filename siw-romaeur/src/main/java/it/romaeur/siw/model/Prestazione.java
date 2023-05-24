@@ -7,6 +7,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Prestazione {
@@ -14,11 +16,20 @@ public class Prestazione {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	
+	@NotNull
+	@Min(0)
 	private int punti;
+	@NotNull
+	@Min(0)
 	private int assist;
+	@NotNull
+	@Min(0)
 	private int rimbalzi;
+	@NotNull
+	@Min(0)
 	private int rubate;
+	@NotNull
+	@Min(0)
 	private int stoppate;
 	@ManyToOne
 	private Giocatore giocatore;

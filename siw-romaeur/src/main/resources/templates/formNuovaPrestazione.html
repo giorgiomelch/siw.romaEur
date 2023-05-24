@@ -13,33 +13,29 @@
 	<h1>Aggiungi una prestazione</h1>
 	
 	<form th:action="@{'/prestazione/' + ${partita.id} + '/'+ ${giocatore.id}}" method="POST" th:object="${prestazione}">
+		<div th:if="${#fields.hasGlobalErrors()}">
+			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
 		<div>
 			<label>Punti:</label> 
 			<span><input type="text" th:field="${prestazione.punti}" /></span>
-		    </span>
+			<span th:if="${#fields.hasErrors('punti')}" th:errors="*{punti}"></span>
 		</div>
 
 		<div>
 			<label>Assist:</label> <span><input type="text" th:field="${prestazione.assist}" /></span>
-		    </span>
+		    <span th:if="${#fields.hasErrors('assist')}" th:errors="*{assist}"></span>
 		</div>
 		
 		<div>
 			<label>Rimbalzi:</label> <span><input type="text" th:field="${prestazione.rimbalzi}" /></span>
-		    </span>
+		    <span th:if="${#fields.hasErrors('rimbalzi')}" th:errors="*{rimbalzi}"></span>
 		</div>
-		
-		
-
-		
 		
 		<div>
 			<span><button type="submit">Conferma</button></span>
 		</div>
 	</form>	
-	
-	
-	
 	
 	
 </body>
