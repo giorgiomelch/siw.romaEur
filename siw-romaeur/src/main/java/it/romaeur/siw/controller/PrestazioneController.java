@@ -1,6 +1,5 @@
 package it.romaeur.siw.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,11 +39,14 @@ public class PrestazioneController {
 	@PostMapping("prestazione/{idPartita}/{idGiocatore}")
 	public String newPrestazione(@Valid @ModelAttribute("prestazione") Prestazione prestazione , BindingResult bindingResult, 
 			@PathVariable("idPartita") Long idPartita ,@PathVariable("idGiocatore") Long idGiocatore ,  Model model) {
+		
+		Partita partita = this.partitaRepository.findById(idPartita).get();
+		Giocatore giocatore= this.giocatoreRepository.findById(idGiocatore).get(); 
+		if(partita.getGiocatoriDellaPartita().contains(giocatore))
+			bindingResult.reject("prestazione.duplicate");
 		if(!bindingResult.hasErrors()) {
-			Partita partita = this.partitaRepository.findById(idPartita).get();
 			partita.getPrestazioni().add(prestazione);
 			prestazione.setPartita(partita);
-			Giocatore giocatore= this.giocatoreRepository.findById(idGiocatore).get(); 
 			giocatore.getPrestazioni().add(prestazione);
 			prestazione.setGiocatore(giocatore);
 			this.prestazioneRepository.save(prestazione); 
