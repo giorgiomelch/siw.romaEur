@@ -28,7 +28,7 @@ public class GiocatoreService {
 				&& this.giocatoreRepository.existsByNomeAndCognomeAndDataDiNascita
 				(giocatore.getNome(), giocatore.getCognome(),giocatore.getDataDiNascita());
 	}
-	public Object findAllExcept(List<Giocatore> giocatoriDellaPartita) {
+	public List<Giocatore> findAllExcept(List<Giocatore> giocatoriDellaPartita) {
 		return this.giocatoreRepository.findAllExcept(giocatoriDellaPartita);
 	}
 	public void addAndSaveNewPrestazione(Giocatore giocatore, Prestazione prestazione) {
