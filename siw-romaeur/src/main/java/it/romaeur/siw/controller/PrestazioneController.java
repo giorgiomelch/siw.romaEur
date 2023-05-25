@@ -78,8 +78,10 @@ public class PrestazioneController {
 		
 		model.addAttribute("partita", partita);
 		model.addAttribute("prestazioni", partita.getPrestazioni());
-		model.addAttribute("giocatoriAssenti", this.giocatoreService.findAll());
-		
+		if(this.partitaService.hasNoPrestazioni(partita))
+			model.addAttribute("giocatoriAssenti", this.giocatoreService.findAll());
+		else
+			model.addAttribute("giocatoriAssenti", this.giocatoreService.findAllExcept(partita.getGiocatoriDellaPartita()));
 		return "formUpdatePrestazioni.html";
 	}
 
