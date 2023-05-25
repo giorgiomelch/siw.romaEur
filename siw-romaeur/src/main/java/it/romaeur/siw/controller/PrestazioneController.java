@@ -27,8 +27,14 @@ public class PrestazioneController {
 
 	@GetMapping("/formNuovaPrestazione/{idPartita}/{idGiocatore}")
 	public String formNuovaPrestazione(@PathVariable("idPartita") Long idPartita ,@PathVariable("idGiocatore") Long idGiocatore , Model model) {
-		model.addAttribute("partita", this.partitaService.findById(idPartita));
-		model.addAttribute("giocatore", this.giocatoreService.findById(idGiocatore));
+		Partita partita=this.partitaService.findById(idPartita);
+		if(partita==null)
+			return "partitaError.html";
+		Giocatore giocatore=this.giocatoreService.findById(idGiocatore);
+		if(giocatore==null)
+			return "giocatoreError.html";
+		model.addAttribute("giocatore", giocatore);
+		model.addAttribute("partita", partita);
 		model.addAttribute("prestazione",new Prestazione());
 		return "formNuovaPrestazione.html";
 	}
@@ -65,12 +71,16 @@ public class PrestazioneController {
 	@GetMapping("formConfirmDeletePrestazione/{idPrestazione}")
 	public String formConfirmDeletePrestazione(@PathVariable ("idPrestazione") Long idPrestazione, Model model) {
 		Prestazione prestazione = this.prestazioneService.findById(idPrestazione);
+		if(prestazione==null)
+			return "prestazioneError.html";
 		model.addAttribute("prestazione",prestazione);
 		return "formConfirmDeletePrestazione.html";
 	}
 	@GetMapping("deletePrestazione/{idPrestazione}")
 	public String deletePrestazione(@PathVariable ("idPrestazione") Long idPrestazione, Model model) {
 		Prestazione prestazione = this.prestazioneService.findById(idPrestazione);
+		if(prestazione==null)
+			return "prestazioneError.html";
 		Partita partita= prestazione.getPartita();
 		this.partitaService.removePrestazioneAssociation(prestazione);
 		this.giocatoreService.removePrestazioneAssociation(prestazione);

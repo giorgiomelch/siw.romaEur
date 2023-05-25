@@ -48,6 +48,8 @@ public class PartitaController {
 	@GetMapping("/partita/{id}")
 	public String getPartita(@PathVariable("id") Long id, Model model) {
 		Partita partita = this.partitaService.findById(id);
+		if(partita==null)
+			return "partitaError.html";
 		model.addAttribute("partita", partita);
 		model.addAttribute("prestazioni",partita.getPrestazioni());
 		return "partita.html";
@@ -58,6 +60,8 @@ public class PartitaController {
 	@GetMapping("/formUpdatePartita/{id}")
 	public String formUpdatePartita(@PathVariable("id") Long id, Model model) {
 		Partita partita=  this.partitaService.findById(id);
+		if(partita==null)
+			return "partitaError.html";
 		model.addAttribute("partita", partita);
 		model.addAttribute("prestazioni", partita.getPrestazioni());
 		if(this.partitaService.hasNoPrestazioni(partita))
