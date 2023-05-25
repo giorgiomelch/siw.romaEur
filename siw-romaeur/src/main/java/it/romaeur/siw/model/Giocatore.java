@@ -103,6 +103,69 @@ public class Giocatore {
 	}
 	
 	
+	public int getPartiteGiocate() {
+		return this.prestazioni.size();
+	}
+	
+	public float getMediaPunti() {
+		int sommaPunti = 0;
+		float partiteGiocate = this.getPartiteGiocate();
+		for(Prestazione p:prestazioni) {
+			sommaPunti += p.getPunti();
+		}
+		if(this.getPartiteGiocate() == 0)
+			return 0;
+		else
+		return sommaPunti/partiteGiocate; 
+	}
+	
+	public float getMediaAssist() {
+		int sommaAssist = 0;
+		float partiteGiocate = this.getPartiteGiocate();
+		for(Prestazione p:prestazioni) {
+			sommaAssist += p.getAssist();
+		}
+		if(this.getPartiteGiocate() == 0)
+			return 0;
+		else
+		return sommaAssist/partiteGiocate; 
+	}
+	
+	public float getMediaRimbalzi() {
+		int sommaRimbalzi = 0;
+		float partiteGiocate = this.getPartiteGiocate();
+		for(Prestazione p:prestazioni) {
+			sommaRimbalzi += p.getRimbalzi();
+		}
+		if(this.getPartiteGiocate() == 0)
+			return 0;
+		else
+		return sommaRimbalzi/partiteGiocate; 	}
+	
+	public float getMediaRubate() {
+		int sommaRubate = 0;
+		float partiteGiocate = this.getPartiteGiocate();
+		for(Prestazione p:prestazioni) {
+			sommaRubate += p.getRubate();
+		}
+		if(this.getPartiteGiocate() == 0)
+			return 0;
+		else
+		return sommaRubate/partiteGiocate; 
+	}
+	
+	public float getMediaStoppate() {
+		int sommaStoppate = 0;
+		float partiteGiocate = this.getPartiteGiocate();
+		for(Prestazione p:prestazioni) {
+			sommaStoppate += p.getStoppate();
+		}
+		if(this.getPartiteGiocate() == 0)
+			return 0;
+		else
+		return sommaStoppate/partiteGiocate; 	}
+	
+	
 	
 	
 }

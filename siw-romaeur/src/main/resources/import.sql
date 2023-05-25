@@ -1,4 +1,4 @@
-insert into giocatore values(nextval('giocatore_seq'), 'Melchiorri', '10/02/2001', 'Giorgio', 31, 'Ala grande','/images/basketball.png');
+insert into giocatore values(nextval('giocatore_seq'), 'Melchiorri', '10/02/2001', 'Giorgio', 31, 'Ala grande','/images/Alfred.png');
 insert into giocatore values(nextval('giocatore_seq'), 'Proietti', '10/02/2001', 'Gianluca', 13, 'Centro','/images/basketball.png');
 insert into giocatore values(nextval('giocatore_seq'), 'Gai', '10/02/2001', 'Daniele', 3, 'Guardia tiratrice','/images/basketball.png');
 insert into giocatore values(nextval('giocatore_seq'), 'Gramegna', '10/02/2001', 'Giulio', 11, 'Playmaker','/images/basketball.png');

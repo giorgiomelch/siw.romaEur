@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Partita</title>
-	<link rel="stylesheet" href="/css/stile.css" />
+	<link rel="stylesheet" href="/css/partita.css" />
 </head>
 
 <body>
@@ -20,15 +20,34 @@
     
     <h1>Tabellino</h1>
 	<div th:if="${prestazioni==null || prestazioni.isEmpty()}">Il tabellino della partita non è ancora disponibile</div>
-	<ul>
+	<div class = "tabellino">
+	<table>
+		<tr>
+	<th>Giocatore</th>
+	<th>Punti</th>
+    <th>Assist</th>
+    <th>Rimbalzi</th>
+ </tr>
+ 
+	
+<ul>
 		<li th:each="prestazione : ${prestazioni}">
-			<div th:text="${prestazione.giocatore.nome} + ' ' + ${prestazione.giocatore.cognome}"> </div>
-			
-			<div th:text="'Punti: ' + ${prestazione.punti} + 'Assist: ' +  ${prestazione.assist} + 
-				'Rimbalzi: ' + ${prestazione.rimbalzi}">25 10 10
-			</div>
+			<tr>
+		 <td th:text="${prestazione.giocatore.nome} + ' ' + ${prestazione.giocatore.cognome}"></td>
+		 <td th:text="${prestazione.punti}"></td>
+         <td th:text="${prestazione.assist}"></td>   
+         <td th:text="${prestazione.rimbalzi}"></td>
+    
+  </tr>
 		</li>
 	</ul>
+	</table>
+	
+
+</div>
+	
+	
+	
     <div>
 		<a th:href="@{'/formUpdatePartita/' + ${partita.id}}">Inserisci/elimina prestazione</a>
 	</div>
