@@ -33,6 +33,16 @@
 		</div>
 		
 		<div>
+			<label>Rubate:</label> <span><input type="text" th:field="${prestazione.rubate}" /></span>
+		    <span th:if="${#fields.hasErrors('rubate')}" th:errors="*{rubate}"></span>
+		</div>
+		
+		<div>
+			<label>Stoppate:</label> <span><input type="text" th:field="${prestazione.stoppate}" /></span>
+		    <span th:if="${#fields.hasErrors('stoppate')}" th:errors="*{stoppate}"></span>
+		</div>
+		
+		<div>
 			<span><button type="submit">Conferma</button></span>
 		</div>
 	</form>	
