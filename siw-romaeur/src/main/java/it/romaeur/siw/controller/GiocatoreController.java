@@ -30,7 +30,10 @@ public class GiocatoreController {
 	
 	@GetMapping("/giocatore/{id}")
 	public String getGiocatore(@PathVariable ("id") Long id, Model model) {
-		model.addAttribute("giocatore", this.giocatoreService.findById(id));
+		Giocatore giocatore=this.giocatoreService.findById(id);
+		if(giocatore==null)
+			return "giocatoreError.html";
+		model.addAttribute("giocatore", giocatore);
 		model.addAttribute("prestazioni",this.prestazioneService.findAllByIdGiocatore(id));
 		return "giocatore.html";
 	}
