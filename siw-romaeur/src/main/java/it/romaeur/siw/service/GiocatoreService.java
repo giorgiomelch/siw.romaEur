@@ -31,9 +31,8 @@ public class GiocatoreService {
 	public List<Giocatore> findAllExcept(List<Giocatore> giocatoriDellaPartita) {
 		return this.giocatoreRepository.findAllExcept(giocatoriDellaPartita);
 	}
-	public void addAndSaveNewPrestazione(Giocatore giocatore, Prestazione prestazione) {
+	public void addNewPrestazione(Giocatore giocatore, Prestazione prestazione) {
 		giocatore.getPrestazioni().add(prestazione);
-		this.giocatoreRepository.save(giocatore);
 		
 	}
 	public void removePrestazioneAssociation(Prestazione prestazione) {

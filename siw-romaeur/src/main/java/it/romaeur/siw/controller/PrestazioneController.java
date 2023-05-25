@@ -43,8 +43,9 @@ public class PrestazioneController {
 		if(partita.getGiocatoriDellaPartita().contains(giocatore))
 			bindingResult.reject("prestazione.duplicate");
 		if(!bindingResult.hasErrors()) {
-			this.partitaService.addAndSaveNewPrestazione(partita, prestazione);
-			this.giocatoreService.addAndSaveNewPrestazione(giocatore, prestazione);
+			
+			this.partitaService.addNewPrestazione(partita, prestazione);
+			this.giocatoreService.addNewPrestazione(giocatore, prestazione);
 			this.prestazioneService.setAndSavePartitaAndGiocatoreToPrestazione(partita, giocatore, prestazione);
 			
 			model.addAttribute("partita", partita);

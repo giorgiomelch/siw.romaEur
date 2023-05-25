@@ -22,9 +22,8 @@ public class PartitaService {
 		return this.partitaRepository.findById(idPartita).orElse(null);
 	}
 
-	public void addAndSaveNewPrestazione(Partita partita, Prestazione prestazione) {
+	public void addNewPrestazione(Partita partita, Prestazione prestazione) {
 		partita.getPrestazioni().add(prestazione);
-		this.partitaRepository.save(partita);
 	}
 	
 	public boolean hasNoPrestazioni(Partita partita) {
