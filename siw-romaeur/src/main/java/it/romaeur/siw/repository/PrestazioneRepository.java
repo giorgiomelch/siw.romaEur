@@ -13,6 +13,6 @@ public interface PrestazioneRepository extends CrudRepository<Prestazione,Long>{
 	@Query(value = "select *" 
 	+  " from Prestazione p"
 	+ " where p.giocatore_id = :giocatore_id ",nativeQuery=true)
-    public List<Prestazione> findByIdGiocatore(@Param("giocatore_id") Long giocatore_id);
+    public List<Prestazione> findAllByIdGiocatore(@Param("giocatore_id") Long giocatore_id);
 
 }

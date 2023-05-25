@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.romaeur.siw.controller.validator.PartitaValidator;
 import it.romaeur.siw.model.Partita;
-import it.romaeur.siw.repository.GiocatoreRepository;
 import it.romaeur.siw.repository.PartitaRepository;
+import it.romaeur.siw.service.GiocatoreService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -20,7 +20,7 @@ public class PartitaController {
 	
 	@Autowired PartitaRepository partitaRepository; 
 	@Autowired PartitaValidator partitaValidator;
-	@Autowired GiocatoreRepository giocatoreRepository;
+	@Autowired GiocatoreService giocatoreService;
 	
 	@GetMapping("/calendario")
 	public String calendario(Model model) {
@@ -61,9 +61,9 @@ public class PartitaController {
 		model.addAttribute("partita", partita);
 		model.addAttribute("prestazioni", partita.getPrestazioni());
 		if(partita.getGiocatoriDellaPartita().isEmpty())
-			model.addAttribute("giocatoriAssenti", this.giocatoreRepository.findAll());
+			model.addAttribute("giocatoriAssenti", this.giocatoreService.findAll());
 		else
-			model.addAttribute("giocatoriAssenti", this.giocatoreRepository.findAllExcept(partita.getGiocatoriDellaPartita()));
+			model.addAttribute("giocatoriAssenti", this.giocatoreService.findAllExcept(partita.getGiocatoriDellaPartita()));
 		return "formUpdatePrestazioni.html";
 	}
 

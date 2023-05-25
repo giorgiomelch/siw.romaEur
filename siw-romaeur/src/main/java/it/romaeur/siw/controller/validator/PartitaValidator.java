@@ -5,12 +5,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import it.romaeur.siw.model.Partita;
-import it.romaeur.siw.repository.PartitaRepository;
+import it.romaeur.siw.service.PartitaService;
 
 @Component
 public class PartitaValidator implements Validator {
 
-	@Autowired PartitaRepository partitaRepository;
+	@Autowired PartitaService partitaService;
 	
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -20,9 +20,7 @@ public class PartitaValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		Partita partita=(Partita)target;
-		if(partita.getNomeSquadraAvversaria()!=null && partita.getData()!=null && 
-				this.partitaRepository.existsByNomeSquadraAvversariaAndData
-				(partita.getNomeSquadraAvversaria(), partita.getData()))
+		if(this.partitaService.alreadyExists(partita))
 			errors.reject("partita.duplicate");
 	}
 

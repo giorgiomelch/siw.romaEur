@@ -11,27 +11,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.romaeur.siw.controller.validator.GiocatoreValidator;
 import it.romaeur.siw.model.Giocatore;
-import it.romaeur.siw.repository.GiocatoreRepository;
-import it.romaeur.siw.repository.PrestazioneRepository;
+import it.romaeur.siw.service.GiocatoreService;
+import it.romaeur.siw.service.PrestazioneService;
 import jakarta.validation.Valid;
 
 @Controller
 public class GiocatoreController {
 	
-	@Autowired GiocatoreRepository giocatoreRepository; 
-	@Autowired PrestazioneRepository prestazioneRepository;
+	@Autowired GiocatoreService giocatoreService; 
+	@Autowired PrestazioneService prestazioneService;
 	@Autowired GiocatoreValidator giocatoreValidator;
 
 	@GetMapping("/roster")
 	public String roster(Model model) {
-		model.addAttribute("roster", this.giocatoreRepository.findAll());
+		model.addAttribute("roster", this.giocatoreService.findAll());
 		return "roster.html";
 	}
 	
 	@GetMapping("/giocatore/{id}")
 	public String getGiocatore(@PathVariable ("id") Long id, Model model) {
-		model.addAttribute("giocatore", this.giocatoreRepository.findById(id).get());
-		model.addAttribute("prestazioni",this.prestazioneRepository.findByIdGiocatore(id));
+		model.addAttribute("giocatore", this.giocatoreService.findById(id));
+		model.addAttribute("prestazioni",this.prestazioneService.findAllByIdGiocatore(id));
 		return "giocatore.html";
 	}
 	
@@ -45,8 +45,8 @@ public class GiocatoreController {
 	public String newGiocatore(@Valid @ModelAttribute ("giocatore") Giocatore giocatore, BindingResult bindingResult, Model model) {
 		this.giocatoreValidator.validate(giocatore, bindingResult);
 		if(!bindingResult.hasErrors()) {
+			this.giocatoreService.save(giocatore);
 			model.addAttribute("giocatore", giocatore);
-			this.giocatoreRepository.save(giocatore);
 			return "giocatore.html";
 		}
 		return "formNewGiocatore.html";

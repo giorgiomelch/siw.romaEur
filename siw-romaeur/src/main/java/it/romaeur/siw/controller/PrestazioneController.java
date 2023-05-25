@@ -13,24 +13,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import it.romaeur.siw.model.Giocatore;
 import it.romaeur.siw.model.Partita;
 import it.romaeur.siw.model.Prestazione;
-import it.romaeur.siw.repository.GiocatoreRepository;
-import it.romaeur.siw.repository.PartitaRepository;
-import it.romaeur.siw.repository.PrestazioneRepository;
+import it.romaeur.siw.service.GiocatoreService;
+import it.romaeur.siw.service.PartitaService;
+import it.romaeur.siw.service.PrestazioneService;
 import jakarta.validation.Valid;
 
 @Controller
 public class PrestazioneController {
 
-	@Autowired PrestazioneRepository prestazioneRepository; 
-	@Autowired GiocatoreRepository giocatoreRepository;
-	@Autowired PartitaRepository partitaRepository;
+	@Autowired PrestazioneService prestazioneService; 
+	@Autowired GiocatoreService giocatoreService;
+	@Autowired PartitaService partitaService;
 
 	@GetMapping("/formNuovaPrestazione/{idPartita}/{idGiocatore}")
 	public String formNuovaPrestazione(@PathVariable("idPartita") Long idPartita ,@PathVariable("idGiocatore") Long idGiocatore , Model model) {
-		Partita partita = this.partitaRepository.findById(idPartita).get();
-		Giocatore giocatore= this.giocatoreRepository.findById(idGiocatore).get(); 
-		model.addAttribute("partita",partita);
-		model.addAttribute("giocatore", giocatore);
+		model.addAttribute("partita", this.partitaService.findById(idPartita));
+		model.addAttribute("giocatore", this.giocatoreService.findById(idGiocatore));
 		model.addAttribute("prestazione",new Prestazione());
 		return "formNuovaPrestazione.html";
 	}
@@ -40,53 +38,46 @@ public class PrestazioneController {
 	public String newPrestazione(@Valid @ModelAttribute("prestazione") Prestazione prestazione , BindingResult bindingResult, 
 			@PathVariable("idPartita") Long idPartita ,@PathVariable("idGiocatore") Long idGiocatore ,  Model model) {
 		
-		Partita partita = this.partitaRepository.findById(idPartita).get();
-		Giocatore giocatore= this.giocatoreRepository.findById(idGiocatore).get(); 
+		Partita partita = this.partitaService.findById(idPartita);
+		Giocatore giocatore= this.giocatoreService.findById(idGiocatore); 
 		if(partita.getGiocatoriDellaPartita().contains(giocatore))
 			bindingResult.reject("prestazione.duplicate");
 		if(!bindingResult.hasErrors()) {
-			partita.getPrestazioni().add(prestazione);
-			prestazione.setPartita(partita);
-			giocatore.getPrestazioni().add(prestazione);
-			prestazione.setGiocatore(giocatore);
-			this.prestazioneRepository.save(prestazione); 
+			this.partitaService.addAndSaveNewPrestazione(partita, prestazione);
+			this.giocatoreService.addAndSaveNewPrestazione(giocatore, prestazione);
+			this.prestazioneService.setAndSavePartitaAndGiocatoreToPrestazione(partita, giocatore, prestazione);
 			
 			model.addAttribute("partita", partita);
 			model.addAttribute("prestazioni", partita.getPrestazioni());
-			if(partita.getGiocatoriDellaPartita().isEmpty())
-				model.addAttribute("giocatoriAssenti", this.giocatoreRepository.findAll());
+			if(this.partitaService.hasNoPrestazioni(partita))
+				model.addAttribute("giocatoriAssenti", this.giocatoreService.findAll());
 			else
-				model.addAttribute("giocatoriAssenti", this.giocatoreRepository.findAllExcept(partita.getGiocatoriDellaPartita()));
+				model.addAttribute("giocatoriAssenti", this.giocatoreService.findAllExcept(partita.getGiocatoriDellaPartita()));
 			
 			return "formUpdatePrestazioni.html";
 		}
-		model.addAttribute("giocatore", this.giocatoreRepository.findById(idGiocatore).get());
-		model.addAttribute("partita",this.partitaRepository.findById(idPartita).get());
+		model.addAttribute("giocatore", this.giocatoreService.findById(idGiocatore));
+		model.addAttribute("partita",this.partitaService.findById(idPartita));
 		return "formNuovaprestazione.html";
 	} 
 
 	@GetMapping("formConfirmDeletePrestazione/{idPrestazione}")
 	public String formConfirmDeletePrestazione(@PathVariable ("idPrestazione") Long idPrestazione, Model model) {
-		Prestazione prestazione = this.prestazioneRepository.findById(idPrestazione).get();
+		Prestazione prestazione = this.prestazioneService.findById(idPrestazione);
 		model.addAttribute("prestazione",prestazione);
 		return "formConfirmDeletePrestazione.html";
 	}
 	@GetMapping("deletePrestazione/{idPrestazione}")
 	public String deletePrestazione(@PathVariable ("idPrestazione") Long idPrestazione, Model model) {
-		Prestazione prestazione = this.prestazioneRepository.findById(idPrestazione).get();
+		Prestazione prestazione = this.prestazioneService.findById(idPrestazione);
 		Partita partita= prestazione.getPartita();
-		partita.getPrestazioni().remove(prestazione);
-		this.partitaRepository.save(partita);
-		
-		Giocatore giocatore= prestazione.getGiocatore();
-		giocatore.getPrestazioni().remove(prestazione);
-		this.giocatoreRepository.save(giocatore);
-		
-		this.prestazioneRepository.delete(prestazione);	
+		this.partitaService.removePrestazioneAssociation(prestazione);
+		this.giocatoreService.removePrestazioneAssociation(prestazione);
+		this.prestazioneService.delete(prestazione);	
 		
 		model.addAttribute("partita", partita);
 		model.addAttribute("prestazioni", partita.getPrestazioni());
-		model.addAttribute("giocatoriAssenti", this.giocatoreRepository.findAll());
+		model.addAttribute("giocatoriAssenti", this.giocatoreService.findAll());
 		
 		return "formUpdatePrestazioni.html";
 	}
