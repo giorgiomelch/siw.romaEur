@@ -37,6 +37,14 @@ public class PartitaService {
 		this.partitaRepository.save(partita);
 	}
 
+	public Iterable<Partita> findAll() {
+		return this.partitaRepository.findAll();
+	}
+
+	public void save(Partita partita) {
+		this.partitaRepository.save(partita);
+	}
+
 	
 
 }

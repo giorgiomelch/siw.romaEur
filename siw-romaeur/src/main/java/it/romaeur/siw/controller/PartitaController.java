@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.romaeur.siw.controller.validator.PartitaValidator;
 import it.romaeur.siw.model.Partita;
-import it.romaeur.siw.repository.PartitaRepository;
 import it.romaeur.siw.service.GiocatoreService;
+import it.romaeur.siw.service.PartitaService;
 import jakarta.validation.Valid;
 
 @Controller
 public class PartitaController {
 	
-	@Autowired PartitaRepository partitaRepository; 
 	@Autowired PartitaValidator partitaValidator;
 	@Autowired GiocatoreService giocatoreService;
+	@Autowired PartitaService partitaService;
 	
 	@GetMapping("/calendario")
 	public String calendario(Model model) {
-		model.addAttribute("calendario", this.partitaRepository.findAll());
+		model.addAttribute("calendario", this.partitaService.findAll());
 		return "calendario.html";
 	}
 	
@@ -38,7 +38,7 @@ public class PartitaController {
 	public String newPartita(@Valid @ModelAttribute("partita") Partita partita,BindingResult bindingResult, Model model) {
 		this.partitaValidator.validate(partita, bindingResult);
 		if(!bindingResult.hasErrors()) {
-			this.partitaRepository.save(partita); 
+			this.partitaService.save(partita); 
 			model.addAttribute("partita", partita);
 			return "partita.html";
 		}
@@ -47,7 +47,7 @@ public class PartitaController {
 	
 	@GetMapping("/partita/{id}")
 	public String getPartita(@PathVariable("id") Long id, Model model) {
-		Partita partita = this.partitaRepository.findById(id).get();
+		Partita partita = this.partitaService.findById(id);
 		model.addAttribute("partita", partita);
 		model.addAttribute("prestazioni",partita.getPrestazioni());
 		return "partita.html";
@@ -57,10 +57,10 @@ public class PartitaController {
 
 	@GetMapping("/formUpdatePartita/{id}")
 	public String formUpdatePartita(@PathVariable("id") Long id, Model model) {
-		Partita partita=  this.partitaRepository.findById(id).get();
+		Partita partita=  this.partitaService.findById(id);
 		model.addAttribute("partita", partita);
 		model.addAttribute("prestazioni", partita.getPrestazioni());
-		if(partita.getGiocatoriDellaPartita().isEmpty())
+		if(this.partitaService.hasNoPrestazioni(partita))
 			model.addAttribute("giocatoriAssenti", this.giocatoreService.findAll());
 		else
 			model.addAttribute("giocatoriAssenti", this.giocatoreService.findAllExcept(partita.getGiocatoriDellaPartita()));
