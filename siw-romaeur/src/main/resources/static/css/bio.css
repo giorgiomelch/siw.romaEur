@@ -1,14 +1,14 @@
 body { 
-    font-family: "Geneva";
-    color:dimgrey;
+    font-family: Arial, Helvetica;
     margin: 0;
+    color: black;
 }
 
 
 
 a { 
 	text-decoration: none; 
-    color: darkgrey;
+    color: black;
 }
 
 a:hover { 
@@ -73,6 +73,13 @@ h2{
 	background-color: white;
 	height: 500px;
 	width: 100%;
+}
+
+table,tr,th,td{
+	
+	border: 1px solid;
+	width: 100%;
+	border-color: black;
 }
 
 

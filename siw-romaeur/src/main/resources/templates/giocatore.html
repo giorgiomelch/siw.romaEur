@@ -13,7 +13,7 @@
 	
 	
 	<div class = "sidebar"><a href="/"><img src="/images/logo-Roma-Eur.png" width="100%"/></a>
-	<div>Menu Item 1</div>
+	<a href="/roster">Roster</a>
 	
 	</div>
 	
@@ -42,23 +42,31 @@
 
 
 <div class = "tabellino">
+	<table>
+		<tr>
+    <th>Punti</th>
+    <th>Assist</th>
+    <th>Rimbalzi</th>
+ </tr>
+ <tr>
+    <td>Peter</td>
+    <td>Griffin</td>
+  </tr>
+  <tr>
+    <td>Lois</td>
+    <td>Griffin</td>
+  </tr>
+	</table>
 <ul>
 		<li th:each="prestazione : ${prestazioni}">
 			<span class = "riga" th:text="${prestazione.punti} + ' ' + ${prestazione.assist}"></span>
 		</li>
 	</ul>
-	</div>
 	
-	<div class = "riquadro">
-
-<h2>Statistiche</h2>
-<h2>Statistiche</h2>
-<h2>Statistiche</h2>
-<h2>Statistiche</h2>
-<h2>Statistiche</h2>
-
 
 </div>
+
+	<div class = "riquadro"></div>
 
 
     
