@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Form confirm to delete film
+	</title>
+	<link rel="stylesheet" href="/css/stileGenerale.css" />
+</head>
+
+<body>
+	
+	
+	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
+	
+	<div>
+		<span>Sicuro di voler cancellare la partita: </span>
+		<div th:text="${partita.nomeSquadraAvversaria} + ' ( ' + ${partita.punteggioA} + ' - ' + ${partita.punteggioA} + ')'"></div>
+	</div>
+	
+	<a th:href="@{'/deletePartita/' + ${partita.id}}">Conferma</a>
+	
+	
+</body>
+
+</html>

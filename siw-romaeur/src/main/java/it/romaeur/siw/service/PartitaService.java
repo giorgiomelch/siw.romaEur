@@ -44,6 +44,10 @@ public class PartitaService {
 		this.partitaRepository.save(partita);
 	}
 
+	public void delete(Partita partita) {
+		this.partitaRepository.delete(partita);
+	}
+
 	
 
 }

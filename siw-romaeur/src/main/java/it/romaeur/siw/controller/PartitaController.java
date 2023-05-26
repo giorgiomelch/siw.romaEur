@@ -13,6 +13,7 @@ import it.romaeur.siw.controller.validator.PartitaValidator;
 import it.romaeur.siw.model.Partita;
 import it.romaeur.siw.service.GiocatoreService;
 import it.romaeur.siw.service.PartitaService;
+import it.romaeur.siw.service.PrestazioneService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -21,6 +22,7 @@ public class PartitaController {
 	@Autowired PartitaValidator partitaValidator;
 	@Autowired GiocatoreService giocatoreService;
 	@Autowired PartitaService partitaService;
+	@Autowired PrestazioneService prestazioneService; 
 	
 	@GetMapping("/calendario")
 	public String calendario(Model model) {
@@ -70,5 +72,23 @@ public class PartitaController {
 			model.addAttribute("giocatoriAssenti", this.giocatoreService.findAllExcept(partita.getGiocatoriDellaPartita()));
 		return "formUpdatePrestazioni.html";
 	}
-
+	@GetMapping("/formConfirmDeletePartita/{idPartita}")
+	public String formConfirmDeletePartita(@PathVariable ("idPartita") Long idPartita, Model model) {
+		Partita partita=  this.partitaService.findById(idPartita);
+		if(partita==null)
+			return "partitaError.html";
+		model.addAttribute("partita", partita);
+		return "formConfirmDeletePartita.html";
+	}
+	@GetMapping("/deletePartita/{idPartita}")
+	public String deletePartita(@PathVariable ("idPartita") Long idPartita, Model model) {
+		Partita partita=  this.partitaService.findById(idPartita);
+		if(partita==null)
+			return "partitaError.html";
+		
+		this.partitaService.delete(partita);
+		
+		model.addAttribute("calendario", this.partitaService.findAll());
+		return "calendario.html";
+	}
 }

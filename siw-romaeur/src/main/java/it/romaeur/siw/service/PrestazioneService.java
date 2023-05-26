@@ -9,11 +9,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PrestazioneService {
 
 	@Autowired PrestazioneRepository prestazioneRepository;
+	@Autowired GiocatoreService giocatoreService;
+	@Autowired PartitaService partitaService;
 
 	public List<Prestazione> findAllByIdGiocatore(Long id) {
 		return this.prestazioneRepository.findAllByIdGiocatore(id);
@@ -29,7 +33,10 @@ public class PrestazioneService {
 		prestazione.setGiocatore(giocatore);
 		this.prestazioneRepository.save(prestazione);
 	}
+	@Transactional(isolation = Isolation.SERIALIZABLE)
 	public void delete(Prestazione prestazione) {
+		this.partitaService.removePrestazioneAssociation(prestazione);
+		this.giocatoreService.removePrestazioneAssociation(prestazione);
 		this.prestazioneRepository.delete(prestazione);
 		
 	}

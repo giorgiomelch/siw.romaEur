@@ -2,6 +2,7 @@ package it.romaeur.siw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -76,16 +77,14 @@ public class PrestazioneController {
 		model.addAttribute("prestazione",prestazione);
 		return "formConfirmDeletePrestazione.html";
 	}
+	@Transactional(isolation = Isolation.SERIALIZABLE)
 	@GetMapping("deletePrestazione/{idPrestazione}")
 	public String deletePrestazione(@PathVariable ("idPrestazione") Long idPrestazione, Model model) {
 		Prestazione prestazione = this.prestazioneService.findById(idPrestazione);
 		if(prestazione==null)
 			return "prestazioneError.html";
 		Partita partita= prestazione.getPartita();
-		this.partitaService.removePrestazioneAssociation(prestazione);
-		this.giocatoreService.removePrestazioneAssociation(prestazione);
-		this.prestazioneService.delete(prestazione);	
-		
+		this.prestazioneService.delete(prestazione);
 		model.addAttribute("partita", partita);
 		model.addAttribute("prestazioni", partita.getPrestazioni());
 		if(this.partitaService.hasNoPrestazioni(partita))

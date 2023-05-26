@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,7 +35,7 @@ public class Giocatore {
 	@Max(99)
 	private int numeroMaglia;
 	private String srcImage;
-	@OneToMany(mappedBy= "giocatore")
+	@OneToMany(mappedBy= "giocatore",cascade= {CascadeType.REMOVE})
 	private List<Prestazione> prestazioni;
 	
 	public Long getId() {

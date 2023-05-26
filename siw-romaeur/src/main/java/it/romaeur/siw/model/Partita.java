@@ -2,12 +2,10 @@ package it.romaeur.siw.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,7 +30,8 @@ public class Partita {
 	private String nomeSquadraAvversaria;
 	@NotNull
 	private LocalDate data;
-	@OneToMany(mappedBy="partita")
+	@OneToMany(mappedBy="partita",
+			cascade= {CascadeType.REMOVE})
 	private List<Prestazione>prestazioni;
 	
 	

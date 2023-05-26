@@ -31,13 +31,10 @@ public class Prestazione {
 	@NotNull
 	@Min(0)
 	private int stoppate;
-	@ManyToOne
+	@ManyToOne 
 	private Giocatore giocatore;
-	@ManyToOne
+	@ManyToOne 
 	private Partita partita;
-	
-	
-	
 	
 	
 	public Long getId() {
