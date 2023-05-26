@@ -40,4 +40,7 @@ public class GiocatoreService {
 		giocatore.getPrestazioni().remove(prestazione);
 		this.giocatoreRepository.save(giocatore);
 	}
+	public void delete(Giocatore giocatore) {
+		this.giocatoreRepository.delete(giocatore);
+	}
 }

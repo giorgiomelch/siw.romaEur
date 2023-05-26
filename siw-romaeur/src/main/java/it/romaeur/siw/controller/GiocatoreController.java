@@ -54,5 +54,23 @@ public class GiocatoreController {
 		}
 		return "formNewGiocatore.html";
 	}
+	
+	@GetMapping("/formConfirmDeleteGiocatore/{idGiocatore}")
+	public String formConfirmDeleteGiocatore(@PathVariable ("idGiocatore") Long idGiocatore, Model model) {
+		Giocatore giocatore= this.giocatoreService.findById(idGiocatore);
+		if(giocatore==null)
+			return "giocatoreError.html";
+		model.addAttribute("giocatore",giocatore);
+		return "formConfirmDeleteGiocatore.html";
+	}
+	@GetMapping("/deleteGiocatore/{idGiocatore}")
+	public String deleteGiocatore(@PathVariable ("idGiocatore") Long idGiocatore, Model model) {
+		Giocatore giocatore= this.giocatoreService.findById(idGiocatore);
+		if(giocatore==null)
+			return "giocatoreError.html";
+		this.giocatoreService.delete(giocatore);
+		model.addAttribute("roster",this.giocatoreService.findAll());
+		return "roster.html";
+	}
 
 }

@@ -14,7 +14,9 @@
 	<ul>
 		<li th:each="giocatore : ${roster}">
 			<a th:href="@{'/giocatore' + '/' + ${giocatore.id}}"
-				th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}"></a>
+				th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}">
+			</a>
+			<a th:href="@{'/formConfirmDeleteGiocatore/' + ${giocatore.id}}">elimina</a>
 		</li>
 	</ul>
 	

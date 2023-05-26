@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Form confirm to delete giocatore
+	</title>
+	<link rel="stylesheet" href="/css/stileGenerale.css" />
+</head>
+
+<body>
+	
+	
+	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
+	
+	<div>
+		<span>Sicuro di voler cancellare il giocatore: </span>
+		<div th:text="${giocatore.nome} + ' ' + ${giocatore.cognome} + ' (' + ${giocatore.dataDiNascita} + ')'"></div>
+	</div>
+	<a th:href="@{'/deleteGiocatore/' + ${giocatore.id}}">Conferma</a>
+	
+</body>
+
+</html>
