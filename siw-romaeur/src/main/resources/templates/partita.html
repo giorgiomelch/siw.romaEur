@@ -6,20 +6,32 @@
 </head>
 
 <body>
+	<header class = "header">
+		<div class = "utente" th:text="Ciao"></div>
+	</header>
 	
-	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
+	<span><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></span>
+    <div><a href="/calendario"><span>Calendario</span></a></div>
 
-    <h1>Dettagli Partita</h1>
+	
+	
+<div class="punteggio">
     
-    <div th:if="${partita}">
-       <span th:text="'Roma Eur: ' + ${partita.getPunteggioA()} + '-' + ${partita.getPunteggioB()} + ' ' + ${partita.getNomeSquadraAvversaria()}">Roma Eur: punteggio</span>
-       <span th:text="${partita.getData()}"></span>
-    </div>
-    <div th:unless="${partita}">Non esiste</div>
-    
-    
+       <div class="immagine"><img src="/images/logo-Roma-Eur.png" width="75%"/></div>
+       <div th:text="'Roma Eur '">Roma Eur</div>
+       <div class="punti" th:text="' ' + ${partita.getPunteggioA()} + ' - ' + ${partita.getPunteggioB()}">30-30</div>
+       <div th:text="' ' + ${partita.getNomeSquadraAvversaria()}">Avversari</div>
+        <div class="immagine"><img width="55%" th:src=${partita.stemmaSquadraAvversaria} /></div>
+ </div>
+   
+   
+   
+   
+
+   
     <h1>Tabellino</h1>
-	<div th:if="${prestazioni==null || prestazioni.isEmpty()}">Il tabellino della partita non è ancora disponibile</div>
+    
+    
 	<div class = "tabellino">
 	<table>
 		<tr>
@@ -52,6 +64,7 @@
 	
 
 </div>
+</div>
 	
 	
 	
@@ -60,8 +73,8 @@
 	</div>
 	
 	
-	  <div><a href="/calendario"><button>Calendario</button></a></div>
 
+    <footer></footer>
 
   </body>
 </html>

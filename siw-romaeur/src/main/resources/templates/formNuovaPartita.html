@@ -36,6 +36,11 @@
 			<label>Data:</label> <span><input type="date" th:field="${partita.data}" /></span>
 		    <span th:if="${#fields.hasErrors('data')}" th:errors="*{data}"></span>
 		</div>
+		
+		<div>
+			<label>URL immagine: </label> 
+			<span><input type="text" th:field="${partita.stemmaSquadraAvversaria}" /></span>
+		</div>	
 
 		
 		

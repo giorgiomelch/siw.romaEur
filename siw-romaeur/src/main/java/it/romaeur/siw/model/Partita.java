@@ -28,6 +28,8 @@ public class Partita {
 	private int punteggioB;
 	@NotBlank
 	private String nomeSquadraAvversaria;
+	private String stemmaSquadraAvversaria;
+	
 	@NotNull
 	private LocalDate data;
 	@OneToMany(mappedBy="partita",
@@ -85,6 +87,14 @@ public class Partita {
 	}
 	public void setPrestazioni(List<Prestazione> prestazioni) {
 		this.prestazioni = prestazioni;
+	}
+	
+	public String getStemmaSquadraAvversaria() {
+		return stemmaSquadraAvversaria;
+	}
+
+	public void setStemmaSquadraAvversaria(String stemmaSquadraAvversaria) {
+		this.stemmaSquadraAvversaria = stemmaSquadraAvversaria;
 	}
 	@Override
 	public int hashCode() {
