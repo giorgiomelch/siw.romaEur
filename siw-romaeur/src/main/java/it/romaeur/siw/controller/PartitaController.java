@@ -14,7 +14,7 @@ import it.romaeur.siw.model.Partita;
 import it.romaeur.siw.service.GiocatoreService;
 import it.romaeur.siw.service.PartitaService;
 import it.romaeur.siw.service.PrestazioneService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @Controller
 public class PartitaController {
