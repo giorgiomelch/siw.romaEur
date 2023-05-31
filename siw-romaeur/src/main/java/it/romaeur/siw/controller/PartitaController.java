@@ -24,10 +24,10 @@ public class PartitaController {
 	@Autowired PartitaService partitaService;
 	@Autowired PrestazioneService prestazioneService; 
 	
-	@GetMapping("/calendario")
+	@GetMapping("/admin/calendario")
 	public String calendario(Model model) {
 		model.addAttribute("calendario", this.partitaService.findAll());
-		return "calendario.html";
+		return "admin/calendario.html";
 	}
 	
 	@GetMapping(value="/formNuovaPartita")
