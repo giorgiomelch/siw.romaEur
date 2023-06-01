@@ -11,7 +11,7 @@
 	</header>
 	
 	<span><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></span>
-    <div><a href="/calendario"><span>Calendario</span></a></div>
+    <div><a href="/admin/calendarioAdmin"><span>Calendario</span></a></div>
 
 	
 	
@@ -66,6 +66,11 @@
 </div>
 </div>
 	
+	
+	
+    <div>
+		<a th:href="@{'/admin/formUpdatePartita/' + ${partita.id}}">Inserisci/elimina prestazione</a>
+	</div>
 	
 	
 

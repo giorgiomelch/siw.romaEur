@@ -24,16 +24,30 @@ public class PartitaController {
 	@Autowired PartitaService partitaService;
 	@Autowired PrestazioneService prestazioneService; 
 	
-	@GetMapping("/admin/calendario")
-	public String calendario(Model model) {
-		model.addAttribute("calendario", this.partitaService.findAll());
-		return "admin/calendario.html";
+	@GetMapping("/admin/partita/{id}")
+	public String getPartitaAdmin(@PathVariable("id") Long id, Model model) {
+		Partita partita = this.partitaService.findById(id);
+		if(partita==null)
+			return "partitaError.html";
+		model.addAttribute("partita", partita);
+		model.addAttribute("prestazioni",partita.getPrestazioni());
+		return "admin/partita.html";
 	}
 	
-	@GetMapping(value="/formNuovaPartita")
+	@GetMapping("/admin/calendarioAdmin")
+	public String calendarioAdmin(Model model) {
+		model.addAttribute("calendario", this.partitaService.findAll());
+		return "admin/calendarioAdmin.html";
+	}
+	@GetMapping("/calendario")
+	public String calendario(Model model) {
+		model.addAttribute("calendario", this.partitaService.findAll());
+		return "calendario.html";
+	}
+	@GetMapping(value="/admin/formNuovaPartita")
 	public String formNuovaPartita(Model model) {
 		model.addAttribute("partita", new Partita());
-		return "formNuovaPartita.html";
+		return "/admin/formNuovaPartita.html";
 	}
 	
 	@PostMapping("/partita")
@@ -42,9 +56,9 @@ public class PartitaController {
 		if(!bindingResult.hasErrors()) {
 			this.partitaService.save(partita); 
 			model.addAttribute("partita", partita);
-			return "partita.html";
+			return "admin/partita.html";
 		}
-		return "formNuovaPartita.html";
+		return "admin/formNuovaPartita.html";
 	} 
 	
 	@GetMapping("/partita/{id}")
@@ -59,7 +73,7 @@ public class PartitaController {
 	
 	
 
-	@GetMapping("/formUpdatePartita/{id}")
+	@GetMapping("/admin/formUpdatePartita/{id}")
 	public String formUpdatePartita(@PathVariable("id") Long id, Model model) {
 		Partita partita=  this.partitaService.findById(id);
 		if(partita==null)
@@ -70,17 +84,18 @@ public class PartitaController {
 			model.addAttribute("giocatoriAssenti", this.giocatoreService.findAll());
 		else
 			model.addAttribute("giocatoriAssenti", this.giocatoreService.findAllExcept(partita.getGiocatoriDellaPartita()));
-		return "formUpdatePrestazioni.html";
+		return "/admin/formUpdatePrestazioni.html";
 	}
-	@GetMapping("/formConfirmDeletePartita/{idPartita}")
+	
+	@GetMapping("/admin/formConfirmDeletePartita/{idPartita}")
 	public String formConfirmDeletePartita(@PathVariable ("idPartita") Long idPartita, Model model) {
 		Partita partita=  this.partitaService.findById(idPartita);
 		if(partita==null)
 			return "partitaError.html";
 		model.addAttribute("partita", partita);
-		return "formConfirmDeletePartita.html";
+		return "admin/formConfirmDeletePartita.html";
 	}
-	@GetMapping("/deletePartita/{idPartita}")
+	@GetMapping("/admin/deletePartita/{idPartita}")
 	public String deletePartita(@PathVariable ("idPartita") Long idPartita, Model model) {
 		Partita partita=  this.partitaService.findById(idPartita);
 		if(partita==null)
@@ -89,6 +104,6 @@ public class PartitaController {
 		this.partitaService.delete(partita);
 		
 		model.addAttribute("calendario", this.partitaService.findAll());
-		return "calendario.html";
+		return "admin/calendarioAdmin.html";
 	}
 }

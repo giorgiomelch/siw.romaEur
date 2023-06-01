@@ -9,14 +9,22 @@
 </head>
 
 <body>
-	<header></header>
+	<header>
+		<div th:if="${#request.userPrincipal}">
+			<span th:text="${#request.userPrincipal.principal.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${#request.userPrincipal}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
 	<div><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
-	<h1>Consulta l'archivio</h1>
+	<h1>Consulta l'archivio ADMIN</h1>
 	<div>
-		<a href="/roster">Roster</a>
+		<a href="/admin/rosterAdmin">Roster</a>
 	</div>
 	<div>
-		<a href="/admin/calendario">Calendario</a>
+		<a href="/admin/calendarioAdmin">Calendario</a>
 	</div>
 	
 	<footer></footer>

@@ -26,7 +26,7 @@ public class PrestazioneController {
 	@Autowired GiocatoreService giocatoreService;
 	@Autowired PartitaService partitaService;
 
-	@GetMapping("/formNuovaPrestazione/{idPartita}/{idGiocatore}")
+	@GetMapping("/admin/formNuovaPrestazione/{idPartita}/{idGiocatore}")
 	public String formNuovaPrestazione(@PathVariable("idPartita") Long idPartita ,@PathVariable("idGiocatore") Long idGiocatore , Model model) {
 		Partita partita=this.partitaService.findById(idPartita);
 		if(partita==null)
@@ -37,11 +37,11 @@ public class PrestazioneController {
 		model.addAttribute("giocatore", giocatore);
 		model.addAttribute("partita", partita);
 		model.addAttribute("prestazione",new Prestazione());
-		return "formNuovaPrestazione.html";
+		return "admin/formNuovaPrestazione.html";
 	}
 
 	@Transactional
-	@PostMapping("prestazione/{idPartita}/{idGiocatore}")
+	@PostMapping("/admin/prestazione/{idPartita}/{idGiocatore}")
 	public String newPrestazione(@Valid @ModelAttribute("prestazione") Prestazione prestazione , BindingResult bindingResult, 
 			@PathVariable("idPartita") Long idPartita ,@PathVariable("idGiocatore") Long idGiocatore ,  Model model) {
 		
@@ -62,23 +62,23 @@ public class PrestazioneController {
 			else
 				model.addAttribute("giocatoriAssenti", this.giocatoreService.findAllExcept(partita.getGiocatoriDellaPartita()));
 			
-			return "formUpdatePrestazioni.html";
+			return "admin/formUpdatePrestazioni.html";
 		}
 		model.addAttribute("giocatore", this.giocatoreService.findById(idGiocatore));
 		model.addAttribute("partita",this.partitaService.findById(idPartita));
-		return "formNuovaprestazione.html";
+		return "admin/formNuovaprestazione.html";
 	} 
 
-	@GetMapping("formConfirmDeletePrestazione/{idPrestazione}")
+	@GetMapping("admin/formConfirmDeletePrestazione/{idPrestazione}")
 	public String formConfirmDeletePrestazione(@PathVariable ("idPrestazione") Long idPrestazione, Model model) {
 		Prestazione prestazione = this.prestazioneService.findById(idPrestazione);
 		if(prestazione==null)
 			return "prestazioneError.html";
 		model.addAttribute("prestazione",prestazione);
-		return "formConfirmDeletePrestazione.html";
+		return "admin/formConfirmDeletePrestazione.html";
 	}
 	@Transactional(isolation = Isolation.SERIALIZABLE)
-	@GetMapping("deletePrestazione/{idPrestazione}")
+	@GetMapping("admin/deletePrestazione/{idPrestazione}")
 	public String deletePrestazione(@PathVariable ("idPrestazione") Long idPrestazione, Model model) {
 		Prestazione prestazione = this.prestazioneService.findById(idPrestazione);
 		if(prestazione==null)
@@ -91,7 +91,7 @@ public class PrestazioneController {
 			model.addAttribute("giocatoriAssenti", this.giocatoreService.findAll());
 		else
 			model.addAttribute("giocatoriAssenti", this.giocatoreService.findAllExcept(partita.getGiocatoriDellaPartita()));
-		return "formUpdatePrestazioni.html";
+		return "admin/formUpdatePrestazioni.html";
 	}
 
 	

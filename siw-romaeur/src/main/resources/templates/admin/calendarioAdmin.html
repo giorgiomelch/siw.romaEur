@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Calendario</title>
+	<link rel="stylesheet" href="/css/stileRomaEur1.css" />
+</head>
+
+<body>
+	<header>
+		<div th:if="${#request.userPrincipal}">
+			<span th:text="${#request.userPrincipal.principal.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${#request.userPrincipal}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
+
+	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
+
+	
+	<h1>Calendario</h1>
+	<div th:if="${calendario==null || calendario.isEmpty()}">Non ci sono partite nel sistema</div>
+	<ul>
+		<li th:each="partita : ${calendario}">
+			<a th:href="@{'/admin/partita' + '/' + ${partita.id}}"
+				th:text="'RomaEur' + ' ' + ${partita.getPunteggioA()} + '-' + ${partita.getPunteggioB()} + ' ' + ${partita.getNomeSquadraAvversaria()} + ' ' + ${partita.data}">Roma eur:0 
+			</a>
+			<a th:href="@{'/admin/formConfirmDeletePartita/' + ${partita.id}}">elimina</a>
+		</li>
+	</ul>
+	
+	
+	
+	<div>
+		<a href="/admin/formNuovaPartita">Inserisci nuova partita</a>
+	</div>
+		<footer></footer>
+
+</body>
+
+</html>

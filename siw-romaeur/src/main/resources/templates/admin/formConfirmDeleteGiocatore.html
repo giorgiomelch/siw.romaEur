@@ -9,7 +9,15 @@
 </head>
 
 <body>
-	
+	<header>
+		<div th:if="${#request.userPrincipal}">
+			<span th:text="${#request.userPrincipal.principal.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${#request.userPrincipal}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
 	
 	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
 	
@@ -17,7 +25,7 @@
 		<span>Sicuro di voler cancellare il giocatore: </span>
 		<div th:text="${giocatore.nome} + ' ' + ${giocatore.cognome} + ' (' + ${giocatore.dataDiNascita} + ')'"></div>
 	</div>
-	<a th:href="@{'/deleteGiocatore/' + ${giocatore.id}}">Conferma</a>
+	<a th:href="@{'/admin/deleteGiocatore/' + ${giocatore.id}}">Conferma</a>
 	
 </body>
 

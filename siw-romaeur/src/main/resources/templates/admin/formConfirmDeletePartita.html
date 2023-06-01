@@ -9,7 +9,15 @@
 </head>
 
 <body>
-	
+	<header>
+		<div th:if="${#request.userPrincipal}">
+			<span th:text="${#request.userPrincipal.principal.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${#request.userPrincipal}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
 	
 	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
 	
@@ -18,7 +26,7 @@
 		<div th:text="${partita.nomeSquadraAvversaria} + ' ( ' + ${partita.punteggioA} + ' - ' + ${partita.punteggioA} + ')'"></div>
 	</div>
 	
-	<a th:href="@{'/deletePartita/' + ${partita.id}}">Conferma</a>
+	<a th:href="@{'/admin/deletePartita/' + ${partita.id}}">Conferma</a>
 	
 	
 </body>

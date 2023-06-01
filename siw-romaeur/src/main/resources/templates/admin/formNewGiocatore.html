@@ -9,9 +9,18 @@
 </head>
 
 <body>
+	<header>
+		<div th:if="${#request.userPrincipal}">
+			<span th:text="${#request.userPrincipal.principal.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${#request.userPrincipal}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
 	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
 	<h1>Aggiungi un giocatore</h1>
-	<form th:action="@{/giocatore}" method="POST" th:object="${giocatore}">
+	<form th:action="@{/admin/giocatore}" method="POST" th:object="${giocatore}">
 		<div th:if="${#fields.hasGlobalErrors()}">
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>
