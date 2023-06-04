@@ -18,11 +18,12 @@
 			<a href="/login">Login</a>
 		</div>
 	</header>
+	
 	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
 	<h1>Aggiungi una partita</h1>
 	<form th:action="@{/admin/partita}" method="POST" th:object="${partita}">
   		<div th:if="${#fields.hasGlobalErrors()}">
-			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
 		</div>
 		
 		<div>
@@ -32,27 +33,28 @@
 		</div>
 
 		<div>
-			<label>Punteggio Roma Eur:</label> <span><input type="text" th:field="${partita.punteggioA}" /></span>
+			<label>Punteggio Roma Eur:</label> 
+			<span><input type="text" th:field="${partita.punteggioA}" /></span>
 		    <span th:if="${#fields.hasErrors('punteggioA')}" th:errors="*{punteggioA}"></span>
 		</div>
 		
 		<div>
-			<label>Punteggio squadra avversaria:</label> <span><input type="text" th:field="${partita.punteggioB}" /></span>
+			<label>Punteggio squadra avversaria:</label> 
+			<span><input type="text" th:field="${partita.punteggioB}" /></span>
 		    <span th:if="${#fields.hasErrors('punteggioB')}" th:errors="*{punteggioB}"></span>
 		</div>
 		
 		<div>
-			<label>Data:</label> <span><input type="date" th:field="${partita.data}" /></span>
+			<label>Data:</label> 
+			<span><input type="date" th:field="${partita.data}" /></span>
 		    <span th:if="${#fields.hasErrors('data')}" th:errors="*{data}"></span>
 		</div>
 		
 		<div>
 			<label>URL immagine: </label> 
-			<span><input type="text" th:field="${partita.stemmaSquadraAvversaria}" /></span>
+			<span><input type="urlImmagine" th:field="${partita.stemmaSquadraAvversaria}" /></span>
 		</div>	
 
-		
-		
 		<div>
 			<span><button type="submit">Conferma</button></span>
 		</div>

@@ -50,7 +50,7 @@ public class PartitaController {
 		return "/admin/formNuovaPartita.html";
 	}
 	
-	@PostMapping("/partita")
+	@PostMapping("/admin/partita")
 	public String newPartita(@Valid @ModelAttribute("partita") Partita partita,BindingResult bindingResult, Model model) {
 		this.partitaValidator.validate(partita, bindingResult);
 		if(!bindingResult.hasErrors()) {
