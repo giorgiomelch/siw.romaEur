@@ -33,7 +33,7 @@
 		<div>
 			<label>Cognome: </label> 
 			<span><input type="text" th:field="${giocatore.cognome}" /></span>
-			<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{title}"></span>
+			<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
 		</div>
 		
 		<div>
@@ -62,7 +62,7 @@
 		
 		<div>
 			<label>URL immagine: </label> 
-			<span><input type="text" th:field="${giocatore.srcImage}" /></span>
+			<span><input type="urlImmagine" th:field="${giocatore.srcImage}" /></span>
 		</div>		
 		
 		<div>
