@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>Partita</title>
 	<link rel="stylesheet" href="/css/partita.css" />
@@ -67,7 +67,9 @@
 </div>
 	
 	
-	
+	<a th:if="${credentials!=null && credentials.isAdmin()}">
+		<a th:href="@{'/admin/formUpdatePartita/' + ${partita.id}}">Inserisci/elimina prestazione</a>
+	</a>
 
     <footer></footer>
 

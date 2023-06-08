@@ -64,4 +64,7 @@ public class Credentials {
 		this.role = role;
 	}
 
+	 public boolean isAdmin(){
+        return role.equals(ADMIN_ROLE);
+    }
 }

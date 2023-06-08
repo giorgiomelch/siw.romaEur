@@ -24,21 +24,8 @@ public class PartitaController {
 	@Autowired PartitaService partitaService;
 	@Autowired PrestazioneService prestazioneService; 
 	
-	@GetMapping("/admin/partita/{id}")
-	public String getPartitaAdmin(@PathVariable("id") Long id, Model model) {
-		Partita partita = this.partitaService.findById(id);
-		if(partita==null)
-			return "partitaError.html";
-		model.addAttribute("partita", partita);
-		model.addAttribute("prestazioni",partita.getPrestazioni());
-		return "admin/partita.html";
-	}
 	
-	@GetMapping("/admin/calendarioAdmin")
-	public String calendarioAdmin(Model model) {
-		model.addAttribute("calendario", this.partitaService.findAll());
-		return "admin/calendarioAdmin.html";
-	}
+	
 	@GetMapping("/calendario")
 	public String calendario(Model model) {
 		model.addAttribute("calendario", this.partitaService.findAll());
@@ -56,7 +43,7 @@ public class PartitaController {
 		if(!bindingResult.hasErrors()) {
 			this.partitaService.save(partita); 
 			model.addAttribute("partita", partita);
-			return "admin/partita.html";
+			return "partita.html";
 		}
 		return "admin/formNuovaPartita.html";
 	} 
@@ -104,6 +91,6 @@ public class PartitaController {
 		this.partitaService.delete(partita);
 		
 		model.addAttribute("calendario", this.partitaService.findAll());
-		return "admin/calendarioAdmin.html";
+		return "calendario.html";
 	}
 }

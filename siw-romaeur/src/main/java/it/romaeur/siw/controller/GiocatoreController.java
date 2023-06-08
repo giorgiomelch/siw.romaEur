@@ -27,11 +27,6 @@ public class GiocatoreController {
 		model.addAttribute("roster", this.giocatoreService.findAll());
 		return "roster.html";
 	}
-	@GetMapping("/admin/rosterAdmin")
-	public String rosterAdmin(Model model) {
-		model.addAttribute("roster", this.giocatoreService.findAll());
-		return "admin/rosterAdmin.html";
-	}
 	
 	@GetMapping("/giocatore/{id}")
 	public String getGiocatore(@PathVariable ("id") Long id, Model model) {
@@ -42,15 +37,7 @@ public class GiocatoreController {
 		model.addAttribute("prestazioni",this.prestazioneService.findAllByIdGiocatore(id));
 		return "giocatore.html";
 	}
-	@GetMapping("/admin/giocatore/{id}")
-	public String getGiocatoreAdmin(@PathVariable ("id") Long id, Model model) {
-		Giocatore giocatore=this.giocatoreService.findById(id);
-		if(giocatore==null)
-			return "giocatoreError.html";
-		model.addAttribute("giocatore", giocatore);
-		model.addAttribute("prestazioni",this.prestazioneService.findAllByIdGiocatore(id));
-		return "admin/giocatore.html";
-	}
+
 	
 	@GetMapping("/admin/formNewGiocatore")
 	public String formNewGiocatore(Model model) {
@@ -64,7 +51,7 @@ public class GiocatoreController {
 		if(!bindingResult.hasErrors()) {
 			this.giocatoreService.save(giocatore);
 			model.addAttribute("giocatore", giocatore);
-			return "admin/giocatore.html";
+			return "giocatore.html";
 		}
 		return "admin/formNewGiocatore.html";
 	}
@@ -84,7 +71,7 @@ public class GiocatoreController {
 			return "giocatoreError.html";
 		this.giocatoreService.delete(giocatore);
 		model.addAttribute("roster",this.giocatoreService.findAll());
-		return "admin/rosterAdmin.html";
+		return "roster.html";
 	}
 
 }

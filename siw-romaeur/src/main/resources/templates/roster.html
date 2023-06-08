@@ -24,8 +24,14 @@
 			<a th:href="@{'/giocatore' + '/' + ${giocatore.id}}"
 				th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}">
 			</a>
+			<a th:if="${credentials!=null && credentials.isAdmin()}">
+				<a th:href="@{'/admin/formConfirmDeleteGiocatore/' + ${giocatore.id}}">elimina</a>
+			</a>
 		</li>
 	</ul>
+		<a th:if="${credentials!=null && credentials.isAdmin()}">
+			<a th:href="@{/admin/formNewGiocatore}">Aggiungi giocatore</a>
+		</a>
 	
 	<footer></footer>
 </body>
