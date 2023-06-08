@@ -7,8 +7,14 @@
 
 <body>
 	
-	<header class = "header">
-		<div class = "utente" th:text="Ciao"></div>
+	<header>
+		<div th:if="${#request.userPrincipal}">
+			<span th:text="${#request.userPrincipal.principal.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${#request.userPrincipal}">
+			<a href="/login">Login</a>
+		</div>
 	</header>
 	
 	

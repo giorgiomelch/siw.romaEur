@@ -35,22 +35,20 @@ a:hover {
 }
 
 
-.header {
+header {
     background-color: red;
     color: black;
     height: 30px;
     width: 100%;
-
-  
-  
-}
-.utente{
-color: black;
+    color: black;
 text-align: right;
 justify-content: end;
-font-size: 1.5em;
+font-size: 1em;
 
+  
+  
 }
+
 
 
 

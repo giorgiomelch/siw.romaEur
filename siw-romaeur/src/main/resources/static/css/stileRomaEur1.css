@@ -20,6 +20,9 @@ header {
     color: black;
     height: 30px;
     width: 100%;
+    text-align: right;
+justify-content: end;
+font-size: 1em;
 }
 
 footer{
