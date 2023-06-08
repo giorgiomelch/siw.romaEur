@@ -15,6 +15,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Partita {
 	@Id
@@ -31,6 +33,7 @@ public class Partita {
 	private String stemmaSquadraAvversaria;
 	
 	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate data;
 	@OneToMany(mappedBy="partita",
 			cascade= {CascadeType.REMOVE})
