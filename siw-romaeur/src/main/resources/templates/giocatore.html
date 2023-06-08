@@ -27,8 +27,8 @@
 		
     <div class = "bioInfo">
 		<h1 th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}">Gianluca Proietti</h1>
-        <div th:text="'Data di nascita: ' + ${giocatore.dataDiNascita}">01/01/2000</div>
-        <div th:text="'Ruolo: ' + ${giocatore.ruolo}">Centro</div>
+<div th:text="'Data di nascita: ' + ${giocatore.dataDiNascita.getDayOfMonth()}
+        + '/' + ${giocatore.dataDiNascita.getMonthValue()} + '/' + ${giocatore.dataDiNascita.getYear()} ">01/01/2000</div>        <div th:text="'Ruolo: ' + ${giocatore.ruolo}">Centro</div>
     </div>
     
         <div class = "maglietta">

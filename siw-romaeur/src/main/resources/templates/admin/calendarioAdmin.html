@@ -25,7 +25,8 @@
 	<ul>
 		<li th:each="partita : ${calendario}">
 			<a th:href="@{'/admin/partita' + '/' + ${partita.id}}"
-				th:text="'RomaEur' + ' ' + ${partita.getPunteggioA()} + '-' + ${partita.getPunteggioB()} + ' ' + ${partita.getNomeSquadraAvversaria()} + ' ' + ${partita.data}">Roma eur:0 
+				th:text="'RomaEur' + ' ' + ${partita.getPunteggioA()} + '-' + ${partita.getPunteggioB()} + ' ' + ${partita.getNomeSquadraAvversaria()} + ' ' 
+				+ ${partita.data.getDayOfMonth()} + '/' + ${partita.data.getMonthValue()} + '/' + ${partita.data.getYear()}">Roma eur:0 
 			</a>
 			<a th:href="@{'/admin/formConfirmDeletePartita/' + ${partita.id}}">elimina</a>
 		</li>
