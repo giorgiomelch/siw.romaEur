@@ -1,6 +1,7 @@
 package it.romaeur.siw.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,6 +16,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Giocatore {
 
@@ -27,6 +30,7 @@ public class Giocatore {
 	@NotBlank
 	private String cognome;
 	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataDiNascita;
 	@NotNull
 	private String ruolo; 	
@@ -38,6 +42,11 @@ public class Giocatore {
 	@OneToMany(mappedBy= "giocatore",cascade= {CascadeType.REMOVE})
 	private List<Prestazione> prestazioni;
 	
+	
+	
+	public Giocatore() {
+		this.prestazioni = new ArrayList<>();
+	}
 	public Long getId() {
 		return id;
 	}
@@ -105,7 +114,9 @@ public class Giocatore {
 	
 	
 	public int getPartiteGiocate() {
+		if(this.prestazioni != null)
 		return this.prestazioni.size();
+		return 0;
 	}
 	
 	public float getMediaPunti() {
