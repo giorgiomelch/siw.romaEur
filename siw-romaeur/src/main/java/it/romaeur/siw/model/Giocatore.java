@@ -1,9 +1,9 @@
 package it.romaeur.siw.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.ArrayList; 
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -42,10 +42,8 @@ public class Giocatore {
 	@OneToMany(mappedBy= "giocatore",cascade= {CascadeType.REMOVE})
 	private List<Prestazione> prestazioni;
 	
-	
-	
-	public Giocatore() {
-		this.prestazioni = new ArrayList<>();
+	public Giocatore(){
+		this.prestazioni= new ArrayList<Prestazione>();
 	}
 	public Long getId() {
 		return id;
@@ -114,9 +112,7 @@ public class Giocatore {
 	
 	
 	public int getPartiteGiocate() {
-		if(this.prestazioni != null)
 		return this.prestazioni.size();
-		return 0;
 	}
 	
 	public float getMediaPunti() {
