@@ -1,6 +1,10 @@
 Manifest-Version: 1.0
-Build-Jdk-Spec: 17
-Implementation-Title: SIW-movie-project
+Built-By: melch
+Build-Jdk: 17.0.6
+Implementation-Title: siw-romaeur
 Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: it.romaeur.siw
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/siw-romaeur
 Created-By: Maven Integration for Eclipse
 
