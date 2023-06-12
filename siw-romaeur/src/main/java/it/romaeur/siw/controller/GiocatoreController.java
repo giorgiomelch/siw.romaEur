@@ -13,7 +13,7 @@ import it.romaeur.siw.controller.validator.GiocatoreValidator;
 import it.romaeur.siw.model.Giocatore;
 import it.romaeur.siw.service.GiocatoreService;
 import it.romaeur.siw.service.PrestazioneService;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @Controller
 public class GiocatoreController {

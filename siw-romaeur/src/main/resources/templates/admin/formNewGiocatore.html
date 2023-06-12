@@ -10,14 +10,15 @@
 
 <body>
 	<header>
-		<div th:if="${#request.userPrincipal}">
-			<span th:text="${#request.userPrincipal.principal.username}"></span>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}" class="username"></span>
 			<a href="/logout">Logout</a>
 		</div>
-		<div th:unless="${#request.userPrincipal}">
+		<div th:unless="${userDetails}">
 			<a href="/login">Login</a>
 		</div>
 	</header>
+	
 	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
 	<h1>Aggiungi un giocatore</h1>
 	<form th:action="@{/admin/giocatore}" method="POST" th:object="${giocatore}">

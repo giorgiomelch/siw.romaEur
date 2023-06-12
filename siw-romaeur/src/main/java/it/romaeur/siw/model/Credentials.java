@@ -1,11 +1,13 @@
 package it.romaeur.siw.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import java.util.Objects;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 
 @Entity
@@ -67,4 +69,24 @@ public class Credentials {
 	 public boolean isAdmin(){
         return role.equals(ADMIN_ROLE);
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, password, role, user, username);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Credentials other = (Credentials) obj;
+		return Objects.equals(id, other.id) && Objects.equals(password, other.password)
+				&& Objects.equals(role, other.role) && Objects.equals(user, other.user)
+				&& Objects.equals(username, other.username);
+	}
+	 
 }

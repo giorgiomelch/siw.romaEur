@@ -17,7 +17,7 @@ import it.romaeur.siw.model.Prestazione;
 import it.romaeur.siw.service.GiocatoreService;
 import it.romaeur.siw.service.PartitaService;
 import it.romaeur.siw.service.PrestazioneService;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @Controller
 public class PrestazioneController {

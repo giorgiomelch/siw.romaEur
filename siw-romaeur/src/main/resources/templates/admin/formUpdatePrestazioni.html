@@ -7,14 +7,15 @@
 </head>
 <body>
 	<header>
-		<div th:if="${#request.userPrincipal}">
-			<span th:text="${#request.userPrincipal.principal.username}"></span>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}" class="username"></span>
 			<a href="/logout">Logout</a>
 		</div>
-		<div th:unless="${#request.userPrincipal}">
+		<div th:unless="${userDetails}">
 			<a href="/login">Login</a>
 		</div>
 	</header>
+	
 	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
     <div th:if="${partita}">
 	    <h1 th:text="${partita.nomeSquadraAvversaria}">squadra avversaria</h1>
@@ -40,7 +41,7 @@
 			</li>
 		</ul>
 	</div>
-	<a th:href="@{'/admin/partita' + '/' + ${partita.id}}">Fine</a>
+	<a th:href="@{'/partita' + '/' + ${partita.id}}">Fine</a>
 	<footer></footer>
   </body>
 </html>
