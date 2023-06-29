@@ -27,7 +27,7 @@
 			<a th:href="@{'/partita' + '/' + ${partita.id}}"
 				th:text="'RomaEur' + ' ' + ${partita.getPunteggioA()} + '-' + ${partita.getPunteggioB()} + ' ' + ${partita.getNomeSquadraAvversaria()} + ' ' + ${partita.data}">Roma eur:0 
 			</a>
-			<a th:if="${credentials!=null && credentials.isAdmin()}">
+			<a th:if="${credenziali!=null && credenziali.isAdmin()}">
 				<a th:href="@{'/admin/formConfirmDeletePartita/' + ${partita.id}}">elimina</a>
 			</a>
 		</li>
