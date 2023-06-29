@@ -21,7 +21,7 @@
 	
 	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
 	<h1>Aggiungi una partita</h1>
-	<form th:action="@{/admin/partita}" method="POST" th:object="${partita}">
+	<form th:action="@{/admin/partita}" method="POST" th:object="${partita}" enctype="multipart/form-data">
   		<div th:if="${#fields.hasGlobalErrors()}">
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
 		</div>
@@ -54,7 +54,9 @@
 			<label>URL immagine: </label> 
 			<span><input type="urlImmagine" th:field="${partita.stemmaSquadraAvversaria}" /></span>
 		</div>	
-
+		<div>
+        	<input type="file" th:name="image" accept="/image*">
+        </div>
 		<div>
 			<span><button type="submit">Conferma</button></span>
 		</div>

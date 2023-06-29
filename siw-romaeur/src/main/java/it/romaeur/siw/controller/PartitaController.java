@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.romaeur.siw.controller.validator.PartitaValidator;
 import it.romaeur.siw.model.Partita;
@@ -38,10 +39,11 @@ public class PartitaController {
 	}
 	
 	@PostMapping("/admin/partita")
-	public String newPartita(@Valid @ModelAttribute("partita") Partita partita,BindingResult bindingResult, Model model) {
+	public String newPartita(@Valid @ModelAttribute("partita") Partita partita,BindingResult bindingResult,
+			MultipartFile image, Model model) {
 		this.partitaValidator.validate(partita, bindingResult);
 		if(!bindingResult.hasErrors()) {
-			this.partitaService.save(partita); 
+			this.partitaService.createNewPartita(partita, image); 
 			model.addAttribute("partita", partita);
 			return "partita.html";
 		}

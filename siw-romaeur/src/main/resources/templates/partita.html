@@ -21,7 +21,7 @@
        <div th:text="'Roma Eur '">Roma Eur</div>
        <div class="punti" th:text="' ' + ${partita.getPunteggioA()} + ' - ' + ${partita.getPunteggioB()}">30-30</div>
        <div th:text="' ' + ${partita.getNomeSquadraAvversaria()}">Avversari</div>
-        <div class="immagine"><img width="55%" th:src=${partita.stemmaSquadraAvversaria} /></div>
+       <div class="immagine"><img th:src="@{'data:image;base64,' + ${partita.stemmaSquadraString}}" width="40%" ></div>
  </div>
    
    

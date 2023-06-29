@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,6 +31,9 @@ public class Partita {
 	private int punteggioB;
 	@NotBlank
 	private String nomeSquadraAvversaria;
+	
+	@Column(length=10000000)
+	private String stemmaSquadraString;
 	private String stemmaSquadraAvversaria;
 	
 	@NotNull
@@ -45,6 +49,14 @@ public class Partita {
 	
 	public Partita() {
 		this.prestazioni = new ArrayList<>();
+	}
+
+	public String getStemmaSquadraString() {
+		return stemmaSquadraString;
+	}
+
+	public void setStemmaSquadraString(String stemmaSquadraString) {
+		this.stemmaSquadraString = stemmaSquadraString;
 	}
 
 	public List <Giocatore>getGiocatoriDellaPartita() {

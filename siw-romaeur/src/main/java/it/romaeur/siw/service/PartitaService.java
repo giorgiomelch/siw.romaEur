@@ -1,7 +1,11 @@
 package it.romaeur.siw.service;
 
+import java.io.IOException;
+import java.util.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.romaeur.siw.model.Partita;
 import it.romaeur.siw.model.Prestazione;
@@ -9,7 +13,7 @@ import it.romaeur.siw.repository.PartitaRepository;
 
 @Service
 public class PartitaService {
-	 
+
 	@Autowired PartitaRepository partitaRepository;
 
 	public boolean alreadyExists(Partita partita) {
@@ -25,7 +29,7 @@ public class PartitaService {
 	public void addNewPrestazione(Partita partita, Prestazione prestazione) {
 		partita.getPrestazioni().add(prestazione);
 	}
-	
+
 	public boolean hasNoPrestazioni(Partita partita) {
 		return partita.getGiocatoriDellaPartita().isEmpty();
 	}
@@ -48,6 +52,14 @@ public class PartitaService {
 		this.partitaRepository.delete(partita);
 	}
 
-	
+	public void createNewPartita(Partita partita, MultipartFile image) {
+		try {
+			String base64Image = Base64.getEncoder().encodeToString(image.getBytes());
+			partita.setStemmaSquadraString(base64Image);
+			this.partitaRepository.save(partita);
+		}catch(IOException e) {}
+	}
+
+
 
 }

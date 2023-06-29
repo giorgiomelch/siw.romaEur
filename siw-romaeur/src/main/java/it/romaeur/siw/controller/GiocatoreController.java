@@ -52,7 +52,6 @@ public class GiocatoreController {
 		this.giocatoreValidator.validate(giocatore, bindingResult);
 		if(!bindingResult.hasErrors()) {
 			this.giocatoreService.createNewGiocatore(giocatore, image);
-			this.giocatoreService.save(giocatore);
 			model.addAttribute("giocatore", giocatore);
 			return "giocatore.html";
 		}
