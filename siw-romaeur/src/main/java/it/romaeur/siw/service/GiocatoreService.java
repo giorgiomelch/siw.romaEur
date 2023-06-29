@@ -1,9 +1,14 @@
 package it.romaeur.siw.service;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
+
+import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.romaeur.siw.model.Giocatore;
 import it.romaeur.siw.model.Prestazione;
@@ -43,14 +48,30 @@ public class GiocatoreService {
 	public void delete(Giocatore giocatore) {
 		this.giocatoreRepository.delete(giocatore);
 	}
-	public Giocatore update(Long idGiocatore, Giocatore newGiocatore) {
+	public Giocatore update(Long idGiocatore, Giocatore newGiocatore, MultipartFile image) {
 		Giocatore giocatore = this.giocatoreRepository.findById(idGiocatore).get();
 		giocatore.setNome(newGiocatore.getNome());
 		giocatore.setCognome(newGiocatore.getCognome());
 		giocatore.setDataDiNascita(newGiocatore.getDataDiNascita());
 		giocatore.setNumeroMaglia(newGiocatore.getNumeroMaglia());
 		giocatore.setRuolo(newGiocatore.getRuolo());
+		if(!image.isEmpty()) {			
+			try {
+				String base64Image = Base64.getEncoder().encodeToString(image.getBytes());
+				giocatore.setImageString(base64Image);
+				} catch(IOException e) {}
+		}
 		this.giocatoreRepository.save(giocatore);
 		return giocatore;
 	}
+	
+	@Transactional
+	public void createNewGiocatore(Giocatore giocatore, MultipartFile image) {
+		try {
+			String base64Image = Base64.getEncoder().encodeToString(image.getBytes());
+			giocatore.setImageString(base64Image);
+			this.giocatoreRepository.save(giocatore);
+			} catch(IOException e) {}
+	}
+		
 }

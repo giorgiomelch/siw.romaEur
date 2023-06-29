@@ -40,7 +40,8 @@
 
 		
 	<div class = "bioPic">
-		<img width="50%" th:src=${giocatore.srcImage} /></div>
+		<img th:src="@{'data:image;base64,' + ${giocatore.imageString}}" width="40%" >
+	</div>
 
    <div th:unless="${giocatore}">Non esiste</div>
 	

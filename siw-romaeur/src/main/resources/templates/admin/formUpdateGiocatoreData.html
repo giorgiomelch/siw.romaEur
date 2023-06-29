@@ -21,7 +21,7 @@
 	
 	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
 	<h1>Modifica un giocatore</h1>
-	<form th:action="@{/admin/updateGiocatoreData/{id}(id=${giocatore.id})}" method="POST" th:object="${giocatore}">
+	<form th:action="@{/admin/updateGiocatoreData/{id}(id=${giocatore.id})}" method="POST" th:object="${giocatore}" enctype="multipart/form-data">
 					
 		<div th:if="${#fields.hasGlobalErrors()}">
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
@@ -61,7 +61,9 @@
 			<span><input type="text" th:field="${giocatore.numeroMaglia}" /></span>
 			<span th:if="${#fields.hasErrors('numeroMaglia')}" th:errors="*{numeroMaglia}"></span>
 		</div>
-		
+		<div>
+        	<input type="file" th:name="image" accept="/image*">
+        </div>
 		<div>
 			<span><button type="submit">Conferma</button></span>
 		</div>

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.romaeur.siw.controller.validator.GiocatoreValidator;
 import it.romaeur.siw.model.Giocatore;
@@ -17,7 +18,7 @@ import jakarta.validation.Valid;
 
 @Controller
 public class GiocatoreController {
-	
+
 	@Autowired GiocatoreService giocatoreService; 
 	@Autowired PrestazioneService prestazioneService;
 	@Autowired GiocatoreValidator giocatoreValidator;
@@ -27,7 +28,7 @@ public class GiocatoreController {
 		model.addAttribute("roster", this.giocatoreService.findAll());
 		return "roster.html";
 	}
-	
+
 	@GetMapping("/giocatore/{id}")
 	public String getGiocatore(@PathVariable ("id") Long id, Model model) {
 		Giocatore giocatore=this.giocatoreService.findById(id);
@@ -38,24 +39,26 @@ public class GiocatoreController {
 		return "giocatore.html";
 	}
 
-	
+
 	@GetMapping("/admin/formNewGiocatore")
 	public String formNewGiocatore(Model model) {
 		model.addAttribute("giocatore", new Giocatore());
 		return "admin/formNewGiocatore.html";
 	}
-	
+
 	@PostMapping("/admin/giocatore")
-	public String newGiocatore(@Valid @ModelAttribute ("giocatore") Giocatore giocatore, BindingResult bindingResult, Model model) {
+	public String newGiocatore(@Valid @ModelAttribute ("giocatore") Giocatore giocatore, BindingResult bindingResult,
+			MultipartFile image, Model model) {
 		this.giocatoreValidator.validate(giocatore, bindingResult);
 		if(!bindingResult.hasErrors()) {
+			this.giocatoreService.createNewGiocatore(giocatore, image);
 			this.giocatoreService.save(giocatore);
 			model.addAttribute("giocatore", giocatore);
 			return "giocatore.html";
 		}
 		return "admin/formNewGiocatore.html";
 	}
-	
+
 	@GetMapping("/admin/formConfirmDeleteGiocatore/{idGiocatore}")
 	public String formConfirmDeleteGiocatore(@PathVariable ("idGiocatore") Long idGiocatore, Model model) {
 		Giocatore giocatore= this.giocatoreService.findById(idGiocatore);
@@ -73,7 +76,7 @@ public class GiocatoreController {
 		model.addAttribute("roster",this.giocatoreService.findAll());
 		return "roster.html";
 	}
-	
+
 	@GetMapping("/admin/formUpdateMovieData/{idGiocatore}")
 	public String formUpdateMovieData(@PathVariable("idGiocatore") Long idGiocatore, Model model) {
 		Giocatore giocatore=this.giocatoreService.findById(idGiocatore);
@@ -82,22 +85,22 @@ public class GiocatoreController {
 		model.addAttribute("giocatore",giocatore);
 		return "admin/formUpdateGiocatoreData.html";
 	}
-	
+
 	@PostMapping("/admin/updateGiocatoreData/{idGiocatore}")
 	public String updateGiocatoreData(@PathVariable("idGiocatore") Long idGiocatore, 
-			@Valid @ModelAttribute("giocatore") Giocatore newGiocatore, BindingResult bindingResult
-			, Model model) {
-	this.giocatoreValidator.validate(newGiocatore, bindingResult);
-	if(!bindingResult.hasErrors()) {
-		model.addAttribute("giocatore", this.giocatoreService.update(idGiocatore, newGiocatore));
-		
-		//DA ELIMINARE QUANDO SI CREERA' UNA FORM ADMIN PER GESTIRE I GIOCATORI 
-		model.addAttribute("roster",this.giocatoreService.findAll());
-		return "/roster.html";
-	}
-	else {
-		model.addAttribute("giocatore", this.giocatoreService.findById(idGiocatore));
-	}
+			@Valid @ModelAttribute("giocatore") Giocatore newGiocatore, BindingResult bindingResult,
+			MultipartFile image, Model model) {
+		this.giocatoreValidator.validate(newGiocatore, bindingResult);
+		if(!bindingResult.hasErrors()) {
+			model.addAttribute("giocatore", this.giocatoreService.update(idGiocatore, newGiocatore, image));
+
+			//DA ELIMINARE QUANDO SI CREERA' UNA FORM ADMIN PER GESTIRE I GIOCATORI 
+			model.addAttribute("roster",this.giocatoreService.findAll());
+			return "/roster.html";
+		}
+		else {
+			model.addAttribute("giocatore", this.giocatoreService.findById(idGiocatore));
+		}
 		return "/admin/formUpdateGiocatoreData.html";
 	}
 

@@ -3,6 +3,9 @@ package it.romaeur.siw.model;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+
+import jakarta.persistence.Column;
+
 import java.util.ArrayList; 
 
 import jakarta.persistence.CascadeType;
@@ -38,6 +41,10 @@ public class Giocatore {
 	@Min(0)
 	@Max(99)
 	private int numeroMaglia;
+
+	@Column(length=10000000)
+	private String imageString;
+	
 	private String srcImage;
 	@OneToMany(mappedBy= "giocatore",cascade= {CascadeType.REMOVE})
 	private List<Prestazione> prestazioni;
@@ -45,6 +52,18 @@ public class Giocatore {
 	public Giocatore(){
 		this.prestazioni= new ArrayList<Prestazione>();
 	}
+	
+	
+	public String getImageString() {
+		return imageString;
+	}
+
+
+	public void setImageString(String imageString) {
+		this.imageString = imageString;
+	}
+
+
 	public Long getId() {
 		return id;
 	}
