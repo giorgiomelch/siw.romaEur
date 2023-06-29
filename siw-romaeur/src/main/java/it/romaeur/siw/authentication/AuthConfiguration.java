@@ -20,7 +20,6 @@ import static it.romaeur.siw.model.Credentials.ADMIN_ROLE;
 
 @Configuration
 @EnableWebSecurity
-//public class WebSecurityConfig {
 public class AuthConfiguration {
 	
 	@Autowired

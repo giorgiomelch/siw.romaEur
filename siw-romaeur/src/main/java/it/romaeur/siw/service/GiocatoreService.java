@@ -43,4 +43,14 @@ public class GiocatoreService {
 	public void delete(Giocatore giocatore) {
 		this.giocatoreRepository.delete(giocatore);
 	}
+	public Giocatore update(Long idGiocatore, Giocatore newGiocatore) {
+		Giocatore giocatore = this.giocatoreRepository.findById(idGiocatore).get();
+		giocatore.setNome(newGiocatore.getNome());
+		giocatore.setCognome(newGiocatore.getCognome());
+		giocatore.setDataDiNascita(newGiocatore.getDataDiNascita());
+		giocatore.setNumeroMaglia(newGiocatore.getNumeroMaglia());
+		giocatore.setRuolo(newGiocatore.getRuolo());
+		this.giocatoreRepository.save(giocatore);
+		return giocatore;
+	}
 }

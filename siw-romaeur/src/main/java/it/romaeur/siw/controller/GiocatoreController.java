@@ -73,5 +73,32 @@ public class GiocatoreController {
 		model.addAttribute("roster",this.giocatoreService.findAll());
 		return "roster.html";
 	}
+	
+	@GetMapping("/admin/formUpdateMovieData/{idGiocatore}")
+	public String formUpdateMovieData(@PathVariable("idGiocatore") Long idGiocatore, Model model) {
+		Giocatore giocatore=this.giocatoreService.findById(idGiocatore);
+		if(giocatore==null)
+			return "generic/GiocatoreError.html";
+		model.addAttribute("giocatore",giocatore);
+		return "admin/formUpdateGiocatoreData.html";
+	}
+	
+	@PostMapping("/admin/updateGiocatoreData/{idGiocatore}")
+	public String updateGiocatoreData(@PathVariable("idGiocatore") Long idGiocatore, 
+			@Valid @ModelAttribute("giocatore") Giocatore newGiocatore, BindingResult bindingResult
+			, Model model) {
+	this.giocatoreValidator.validate(newGiocatore, bindingResult);
+	if(!bindingResult.hasErrors()) {
+		model.addAttribute("giocatore", this.giocatoreService.update(idGiocatore, newGiocatore));
+		
+		//DA ELIMINARE QUANDO SI CREERA' UNA FORM ADMIN PER GESTIRE I GIOCATORI 
+		model.addAttribute("roster",this.giocatoreService.findAll());
+		return "/roster.html";
+	}
+	else {
+		model.addAttribute("giocatore", this.giocatoreService.findById(idGiocatore));
+	}
+		return "/admin/formUpdateGiocatoreData.html";
+	}
 
 }

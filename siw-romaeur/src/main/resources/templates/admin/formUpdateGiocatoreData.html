@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Modifica giocatore
+	</title>
+	<link rel="stylesheet" href="/css/stileRomaEur1.css" />
+</head>
+
+<body>
+	<header>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}" class="username"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${userDetails}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
+	
+	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
+	<h1>Modifica un giocatore</h1>
+	<form th:action="@{/admin/updateGiocatoreData/{id}(id=${giocatore.id})}" method="POST" th:object="${giocatore}">
+					
+		<div th:if="${#fields.hasGlobalErrors()}">
+			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
+		<div>
+			<label>Nome: </label> 
+			<span><input type="text" th:field="${giocatore.nome}" /></span>
+			<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+		</div>
+
+		<div>
+			<label>Cognome: </label> 
+			<span><input type="text" th:field="${giocatore.cognome}" /></span>
+			<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
+		</div>
+		
+		<div>
+			<label>Data di nascita: </label>
+			<span><input type="date" th:field="${giocatore.dataDiNascita}" /></span>
+			<span th:if="${#fields.hasErrors('dataDiNascita')}" th:errors="*{dataDiNascita}"></span>
+		</div>
+		
+		<div>
+		     <label for="giocatore.ruolo">Ruolo:</label>
+			 <select id="giocatore.ruolo" name="ruolo">
+			    <option value="Playmaker">Playmaker</option>
+			    <option value="Guardia tiratrice">Guardia tiratrice</option>
+			    <option value="Ala piccola">Ala piccola</option>
+			    <option value="Ala grande">Ala grande</option>
+			    <option value="Centro">Centro</option>
+			 </select>
+			 <span th:if="${#fields.hasErrors('ruolo')}" th:errors="*{ruolo}"></span>
+		</div>
+		
+		<div>
+			<label>Numero maglia: </label> 
+			<span><input type="text" th:field="${giocatore.numeroMaglia}" /></span>
+			<span th:if="${#fields.hasErrors('numeroMaglia')}" th:errors="*{numeroMaglia}"></span>
+		</div>
+		
+		<div>
+			<span><button type="submit">Conferma</button></span>
+		</div>
+	</form>
+	<footer></footer>
+</body>
+
+</html>

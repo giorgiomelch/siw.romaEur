@@ -26,10 +26,11 @@
 			</a>
 			<a th:if="${credenziali!=null && credenziali.isAdmin()}">
 				<a th:href="@{'/admin/formConfirmDeleteGiocatore/' + ${giocatore.id}}">elimina</a>
+				<a th:href="@{'/admin/formUpdateMovieData/'+${giocatore.id}}"> / Modifica giocatore</a>
 			</a>
 		</li>
 	</ul>
-		<a th:if="${credentials!=null && credentials.isAdmin()}">
+		<a th:if="${credenziali!=null && credenziali.isAdmin()}">
 			<a th:href="@{/admin/formNewGiocatore}">Aggiungi giocatore</a>
 		</a>
 	
