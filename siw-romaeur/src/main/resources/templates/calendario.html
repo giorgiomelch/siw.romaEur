@@ -7,38 +7,42 @@
 </head>
 
 <body>
-	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}" class="username"></span>
-			<a href="/logout">Logout</a>
+	<div class="schermo-vertical">
+		<div class="header">
+			<div class="text" th:if="${userDetails}">
+				<span th:text="${userDetails.username}" class="username"></span>
+				<a href="/logout">Logout</a>
+			</div>
+			<div class="text" th:unless="${userDetails}">
+				<a href="/login">Login</a>
+			</div>
 		</div>
-		<div th:unless="${userDetails}">
-			<a href="/login">Login</a>
-		</div>
-	</header>
-
-	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
-
-	
-	<h1>Calendario</h1>
-	<div th:if="${calendario==null || calendario.isEmpty()}">Non ci sono partite nel sistema</div>
-	<ul>
-		<li th:each="partita : ${calendario}">
-			<a th:href="@{'/partita' + '/' + ${partita.id}}"
-				th:text="'RomaEur' + ' ' + ${partita.getPunteggioA()} + '-' + ${partita.getPunteggioB()} + ' ' + ${partita.getNomeSquadraAvversaria()} + ' ' + ${partita.data}">Roma eur:0 
-			</a>
+		
+		<div class="section">
+			<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
+		
+			
+			<h1>Calendario</h1>
+			<div th:if="${calendario==null || calendario.isEmpty()}">Non ci sono partite nel sistema</div>
+			<ul>
+				<li th:each="partita : ${calendario}">
+					<a th:href="@{'/partita' + '/' + ${partita.id}}"
+						th:text="'RomaEur' + ' ' + ${partita.getPunteggioA()} + '-' + ${partita.getPunteggioB()} + ' ' + ${partita.getNomeSquadraAvversaria()} + ' ' + ${partita.data}">Roma eur:0 
+					</a>
+					<a th:if="${credenziali!=null && credenziali.isAdmin()}">
+						<a th:href="@{'/admin/formConfirmDeletePartita/' + ${partita.id}}">elimina</a>
+					</a>
+				</li>
+			</ul>
 			<a th:if="${credenziali!=null && credenziali.isAdmin()}">
-				<a th:href="@{'/admin/formConfirmDeletePartita/' + ${partita.id}}">elimina</a>
+				<div>
+					<a href="/admin/formNuovaPartita">Inserisci nuova partita</a>
+				</div>
 			</a>
-		</li>
-	</ul>
-	<a th:if="${credenziali!=null && credenziali.isAdmin()}">
-		<div>
-			<a href="/admin/formNuovaPartita">Inserisci nuova partita</a>
+			
 		</div>
-	</a>
-	<footer></footer>
-
+		<div class="footer"></div>
+	</div>
 </body>
 
 </html>
