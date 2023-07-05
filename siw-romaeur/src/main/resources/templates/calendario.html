@@ -19,26 +19,55 @@
 		</div>
 		
 		<div class="section">
-			<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
-		
-			
-			<h1>Calendario</h1>
-			<div th:if="${calendario==null || calendario.isEmpty()}">Non ci sono partite nel sistema</div>
-			<ul>
-				<li th:each="partita : ${calendario}">
-					<a th:href="@{'/partita' + '/' + ${partita.id}}"
-						th:text="'RomaEur' + ' ' + ${partita.getPunteggioA()} + '-' + ${partita.getPunteggioB()} + ' ' + ${partita.getNomeSquadraAvversaria()} + ' ' + ${partita.data}">Roma eur:0 
-					</a>
-					<a th:if="${credenziali!=null && credenziali.isAdmin()}">
-						<a th:href="@{'/admin/formConfirmDeletePartita/' + ${partita.id}}">elimina</a>
-					</a>
-				</li>
-			</ul>
-			<a th:if="${credenziali!=null && credenziali.isAdmin()}">
-				<div>
-					<a href="/admin/formNuovaPartita">Inserisci nuova partita</a>
+			<div class="flexbox-container-vertical">
+				<div class="textCentered"><h1>Calendario</h1></div>
+				<div class="flexbox-container-horizontal-c">
+					<div class="flexbox-container-horizontal-scrollable">
+						
+						<div th:if="${calendario==null || calendario.isEmpty()}">Non ci sono partite nel sistema</div>
+						<li th:each="partita : ${calendario}">
+							<div class="flex-item-box">
+								<div class="flexbox-container-vertical">
+									<div class="flex-item-slice">
+										<div class="riempiTutto-center">
+											<span th:text="${partita.data}"></span>
+										</div>
+									</div>
+									<div class="flex-item-slice">
+										<div class="flex-item-slice-unTerzo">
+											<img src="/images/logo-Roma-Eur.png" width="100%">
+										</div>
+										<div class="flex-item-slice-dueTerzi">
+											<a th:href="@{'/partita' + '/' + ${partita.id}}"
+												th:text="'RomaEur' + ' ' + ${partita.getPunteggioA()}">Roma eur:0 
+											</a>
+										</div>
+									</div>
+									<div class="flex-item-slice">
+										<div class="flex-item-slice-unTerzo">
+											<img th:src="@{'data:image;base64,' + ${partita.getStemmaSquadraString}}" width="100%">
+										</div>
+										<div class="flex-item-slice-dueTerzi">
+											<a th:href="@{'/partita' + '/' + ${partita.id}}"
+												th:text="${partita.getNomeSquadraAvversaria()} + ' ' + ${partita.getPunteggioB()}">Roma eur:0 
+											</a>
+										</div>
+									</div>
+									<a th:if="${credenziali!=null && credenziali.isAdmin()}">
+										<a th:href="@{'/admin/formConfirmDeletePartita/' + ${partita.id}}">elimina</a>
+									</a>
+								</div>
+							</div>
+						</li>
+						<a th:if="${credenziali!=null && credenziali.isAdmin()}">
+							<div>
+								<a href="/admin/formNuovaPartita">Inserisci nuova partita</a>
+							</div>
+						</a>
+					</div>
 				</div>
-			</a>
+			</div>
+			
 			
 		</div>
 		<div class="footer"></div>
