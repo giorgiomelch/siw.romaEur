@@ -25,6 +25,14 @@
 					<div class="flexbox-container-horizontal-scrollable">
 						
 						<div th:if="${calendario==null || calendario.isEmpty()}">Non ci sono partite nel sistema</div>
+						<div th:if="${credenziali!=null && credenziali.isAdmin()}" class="flex-item-box">
+							<div class="flex-item-unTerzoH">
+								Inserisci una nuova partita
+							</div>
+							<div class="flex-item-DueTerziH">
+								<a href="/admin/formNuovaPartita"><img src="/images/plus.png" width="50%"></a>
+							</div>
+						</div>
 						<li th:each="partita : ${calendario}">
 							<div class="flex-item-box">
 								<div class="flexbox-container-vertical">
@@ -59,11 +67,6 @@
 								</div>
 							</div>
 						</li>
-						<a th:if="${credenziali!=null && credenziali.isAdmin()}">
-							<div>
-								<a href="/admin/formNuovaPartita">Inserisci nuova partita</a>
-							</div>
-						</a>
 					</div>
 				</div>
 			</div>
