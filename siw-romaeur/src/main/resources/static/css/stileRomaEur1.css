@@ -49,6 +49,7 @@ li{
 	color: whitesmoke;
 }
 .textCentered{
+	align-items: center;
 	text-align: center;
 	font-size: 1.2em;
 }
@@ -66,7 +67,12 @@ li{
 	background-color: red;
 }
 
-
+.simpleContainer-elementsCentered{
+	align-items: center;
+	text-align: center;	
+	justify-content: center;
+	margin-left: 85px;
+}
 .flexbox-container-horizontal-c{
 	height: 100%;
 	display: flex;

@@ -34,7 +34,6 @@ public class Partita {
 	
 	@Column(length=10000000)
 	private String stemmaSquadraString;
-	private String stemmaSquadraAvversaria;
 	
 	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -104,13 +103,6 @@ public class Partita {
 		this.prestazioni = prestazioni;
 	}
 	
-	public String getStemmaSquadraAvversaria() {
-		return stemmaSquadraAvversaria;
-	}
-
-	public void setStemmaSquadraAvversaria(String stemmaSquadraAvversaria) {
-		this.stemmaSquadraAvversaria = stemmaSquadraAvversaria;
-	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(data, nomeSquadraAvversaria, punteggioA, punteggioB);

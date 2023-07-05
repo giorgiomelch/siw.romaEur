@@ -45,7 +45,6 @@ public class Giocatore {
 	@Column(length=10000000)
 	private String imageString;
 	
-	private String srcImage;
 	@OneToMany(mappedBy= "giocatore",cascade= {CascadeType.REMOVE})
 	private List<Prestazione> prestazioni;
 	
@@ -99,12 +98,6 @@ public class Giocatore {
 	}
 	public void setNumeroMaglia(int numeroMaglia) {
 		this.numeroMaglia = numeroMaglia;
-	}
-	public String getSrcImage() {
-		return srcImage;
-	}
-	public void setSrcImage(String srcImage) {
-		this.srcImage = srcImage;
 	}
 	public List<Prestazione> getPrestazioni() {
 		return prestazioni;

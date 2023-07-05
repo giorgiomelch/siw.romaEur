@@ -60,11 +60,7 @@
 			<span><input type="text" th:field="${giocatore.numeroMaglia}" /></span>
 			<span th:if="${#fields.hasErrors('numeroMaglia')}" th:errors="*{numeroMaglia}"></span>
 		</div>
-		
-		<div>
-			<label>URL immagine: </label> 
-			<span><input type="urlImmagine" th:field="${giocatore.srcImage}" /></span>
-		</div>		
+				
 		<div>
         	<input type="file" th:name="image" accept="/image*">
         </div>
