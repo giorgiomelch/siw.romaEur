@@ -41,7 +41,7 @@ public class PartitaService {
 	}
 
 	public Iterable<Partita> findAll() {
-		return this.partitaRepository.findAll();
+		return this.partitaRepository.findAllByOrderByDataDesc();
 	}
 
 	public void save(Partita partita) {
