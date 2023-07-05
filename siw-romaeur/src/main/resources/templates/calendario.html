@@ -61,9 +61,13 @@
 											</a>
 										</div>
 									</div>
-									<a th:if="${credenziali!=null && credenziali.isAdmin()}">
-										<a th:href="@{'/admin/formConfirmDeletePartita/' + ${partita.id}}">elimina</a>
-									</a>
+									
+									<form th:if="${credenziali!=null && credenziali.isAdmin()}" 
+											th:action="@{'/admin/formConfirmDeletePartita/' + ${partita.id}}" method="GET">
+										 <div class="textCentered">
+											<span><button class="button-red" type="submit">elimina</button></span>
+										</div>
+									</form>
 								</div>
 							</div>
 						</li>
