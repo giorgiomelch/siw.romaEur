@@ -74,6 +74,7 @@ public class PrestazioneController {
 		Prestazione prestazione = this.prestazioneService.findById(idPrestazione);
 		if(prestazione==null)
 			return "prestazioneError.html";
+		model.addAttribute("partita", prestazione.getPartita());
 		model.addAttribute("prestazione",prestazione);
 		return "admin/formConfirmDeletePrestazione.html";
 	}

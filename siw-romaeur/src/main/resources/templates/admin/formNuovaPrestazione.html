@@ -7,57 +7,67 @@
 </head>
 
 <body>
-	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}" class="username"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${userDetails}">
-			<a href="/login">Login</a>
-		</div>
-	</header>
-	
-	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
-	<h1 th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}"></h1>
-	<h1 th:text="${partita.nomeSquadraAvversaria} "></h1>
-	<h1>Aggiungi una prestazione</h1>
-	
-	<form th:action="@{'/admin/prestazione/' + ${partita.id} + '/'+ ${giocatore.id}}" method="POST" th:object="${prestazione}">
-		<div th:if="${#fields.hasGlobalErrors()}">
-			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-		</div>
-		<div>
-			<label>Punti:</label> 
-			<span><input type="text" th:field="${prestazione.punti}" /></span>
-			<span th:if="${#fields.hasErrors('punti')}" th:errors="*{punti}"></span>
-		</div>
-
-		<div>
-			<label>Assist:</label> <span><input type="text" th:field="${prestazione.assist}" /></span>
-		    <span th:if="${#fields.hasErrors('assist')}" th:errors="*{assist}"></span>
+	<div class="schermo-vertical">
+		<div class="header">
+			<div class="text" th:if="${userDetails}">
+				<span th:text="${userDetails.username}" class="username"></span>
+				<a href="/logout">Logout</a>
+			</div>
+			<div class="text" th:unless="${userDetails}">
+				<a href="/login">Login</a>
+			</div>
 		</div>
 		
-		<div>
-			<label>Rimbalzi:</label> <span><input type="text" th:field="${prestazione.rimbalzi}" /></span>
-		    <span th:if="${#fields.hasErrors('rimbalzi')}" th:errors="*{rimbalzi}"></span>
+		<div class="section">
+			<div class="flexbox-container-horizontal-c">
+				<div class="flex-item-formNew">
+					<h3>Aggiungi una prestazione per:</h3>
+					<h3 th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}"></h3>
+					<form th:action="@{'/admin/prestazione/' + ${partita.id} + '/'+ ${giocatore.id}}" method="POST" th:object="${prestazione}">
+						<div th:if="${#fields.hasGlobalErrors()}">
+							<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+						</div>
+						<div>
+							<label>Punti:</label> 
+							<span><input type="text" th:field="${prestazione.punti}" /></span>
+							<span th:if="${#fields.hasErrors('punti')}" th:errors="*{punti}"></span>
+						</div>
+				
+						<div>
+							<label>Assist:</label> <span><input type="text" th:field="${prestazione.assist}" /></span>
+						    <span th:if="${#fields.hasErrors('assist')}" th:errors="*{assist}"></span>
+						</div>
+						
+						<div>
+							<label>Rimbalzi:</label> <span><input type="text" th:field="${prestazione.rimbalzi}" /></span>
+						    <span th:if="${#fields.hasErrors('rimbalzi')}" th:errors="*{rimbalzi}"></span>
+						</div>
+						
+						<div>
+							<label>Rubate:</label> <span><input type="text" th:field="${prestazione.rubate}" /></span>
+						    <span th:if="${#fields.hasErrors('rubate')}" th:errors="*{rubate}"></span>
+						</div>
+						
+						<div>
+							<label>Stoppate:</label> <span><input type="text" th:field="${prestazione.stoppate}" /></span>
+						    <span th:if="${#fields.hasErrors('stoppate')}" th:errors="*{stoppate}"></span>
+						</div>
+						
+						<div>
+							<span><button class="button-green" type="submit">Conferma</button></span>
+						</div>
+						
+					</form>	
+					<form th:action="@{'/admin/formUpdatePartita/' + ${partita.id}}" method="GET">
+						<div>
+							<span><button class="button-red2" type="submit">Annulla</button></span>
+						</div>
+					</form>	
+				</div>
+			</div>
 		</div>
-		
-		<div>
-			<label>Rubate:</label> <span><input type="text" th:field="${prestazione.rubate}" /></span>
-		    <span th:if="${#fields.hasErrors('rubate')}" th:errors="*{rubate}"></span>
-		</div>
-		
-		<div>
-			<label>Stoppate:</label> <span><input type="text" th:field="${prestazione.stoppate}" /></span>
-		    <span th:if="${#fields.hasErrors('stoppate')}" th:errors="*{stoppate}"></span>
-		</div>
-		
-		<div>
-			<span><button type="submit">Conferma</button></span>
-		</div>
-	</form>	
-	
-	<footer></footer>
+		<div class="footer"></div>
+	</div>
 </body>
 
 </html>
