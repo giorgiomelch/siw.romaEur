@@ -5,33 +5,48 @@
 	<title>
 		Form confirm to delete film
 	</title>
-	<link rel="stylesheet" href="/css/stileGenerale.css" />
+	<link rel="stylesheet" href="/css/stileRomaEur1.css" />
 </head>
 
 <body>
-	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}" class="username"></span>
-			<a href="/logout">Logout</a>
+	<div class="schermo-vertical">
+		<div class="header">
+			<div class="text" th:if="${userDetails}">
+				<span th:text="${userDetails.username}" class="username"></span>
+				<a href="/logout">Logout</a>
+			</div>
+			<div class="text" th:unless="${userDetails}">
+				<a href="/login">Login</a>
+			</div>
 		</div>
-		<div th:unless="${userDetails}">
-			<a href="/login">Login</a>
+		
+		<div class="section">
+			<div class="flexbox-container-horizontal-c">
+				<div class="flex-item-formNew">
+					<span>Sicuro di voler cancellare la prestazione: </span>
+					<div th:text="${prestazione.giocatore.nome} + ' ' + ${prestazione.giocatore.cognome} + ' (' + ${prestazione.partita.nomeSquadraAvversaria} + ')'"></div>
+					<div th:text="'Punti: ' + ${prestazione.punti} + 'Assist: ' +  ${prestazione.assist} + 
+							'Rimbalzi: ' + ${prestazione.rimbalzi}">25 10 10
+					</div>
+					
+					<div class="simpleContainer">
+						<form th:action="@{'/admin/deletePrestazione/' + ${prestazione.id}}" method="GET" >
+							 <div>
+								<span><button class="button-red" type="submit">elimina</button></span>
+							</div>
+						</form>
+						<form th:action="@{'/admin/formUpdatePartita/' + ${partita.id}}" method="GET" >
+							 <div>
+								<span><button class="button-green" type="submit">annulla</button></span>
+							</div>
+						</form>
+				     </div>
+					
+				</div>
+			</div>
 		</div>
-	</header>
-	
-	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
-	
-	<div>
-		<span>Sicuro di voler cancellare la prestazione: </span>
-		<div th:text="${prestazione.giocatore.nome} + ' ' + ${prestazione.giocatore.cognome} + ' (' + ${prestazione.partita.nomeSquadraAvversaria} + ')'"></div>
-		<div th:text="'Punti: ' + ${prestazione.punti} + 'Assist: ' +  ${prestazione.assist} + 
-				'Rimbalzi: ' + ${prestazione.rimbalzi}">25 10 10
-		</div>
+		<div class="footer"></div>
 	</div>
-	
-	<a th:href="@{'/admin/deletePrestazione/' + ${prestazione.id}}">Conferma</a>
-	
-	
 </body>
 
 </html>
