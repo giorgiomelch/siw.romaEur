@@ -34,6 +34,8 @@ public class AuthenticationController {
 	
 	@GetMapping(value = "/login") 
 	public String showLoginForm (Model model) {
+		model.addAttribute("user", new User());
+		model.addAttribute("credentials", new Credentials());
 		return "formLogin";
 	}
 
