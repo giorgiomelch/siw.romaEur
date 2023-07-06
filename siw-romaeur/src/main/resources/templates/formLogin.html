@@ -2,11 +2,24 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Modern Flat Design Login Form Example</title>
+  <title>Login</title>
   <link rel="stylesheet" href="/css/login.css">
 
 </head>
 <body>
+	
+
+		<div class="header">
+			<div class="text" th:if="${userDetails}">
+				<span th:text="${userDetails.username}" class="username"></span>
+				<a href="/logout">Logout</a>
+			</div>
+			<div class="text" th:unless="${userDetails}">
+				<a href="/login">Login</a>
+			</div>
+		</div>
+		
+		
 <!-- partial:index.partial.html -->
 <div class="login-page">
   <div class="form">
