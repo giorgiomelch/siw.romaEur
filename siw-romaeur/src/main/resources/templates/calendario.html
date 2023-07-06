@@ -38,7 +38,7 @@
 								<div class="flexbox-container-vertical">
 									<div class="flex-item-slice">
 										<div class="riempiTutto-center">
-											<span th:text="${partita.data}"></span>
+											<span th:text="${partita.data.getDayOfMonth()} + '/' + ${partita.data.getMonthValue()} + '/' + ${partita.data.getYear()}"></span>
 										</div>
 									</div>
 									<div class="flex-item-slice">
