@@ -59,22 +59,25 @@
 					</form>
 				</div>
 			    <div th:unless="${partita}">Non esiste la partita</div>
-			    <div><a>Giocatori presenti alla partita: </a>
-			    	<ul>
-						<li th:each="prestazione : ${prestazioni}">
+			    
+				<div class="flexbox-vertical-scrollable">
+					<h4>Giocatori che puoi aggiungere: </h4>
+					<ul>
+						<li th:each="giocatoreAssente : ${giocatoriAssenti}">
 							<div>
-								<a th:text="${prestazione.giocatore.nome} + ' ' + ${prestazione.giocatore.cognome}"></a>
-								<a th:href="@{'/admin/formConfirmDeletePrestazione'+'/'+${prestazione.id}}">cancella</a>
+								<span th:text="${giocatoreAssente.nome} + ' ' + ${giocatoreAssente.cognome}"></span>
+								<a th:href="@{'/admin/formNuovaPrestazione'+'/'+${partita.id}+'/'+${giocatoreAssente.id}}">-aggiungi</a>
 							</div>
 						</li>
 					</ul>
 				</div>
-				<div><a>Giocatori che puoi aggiungere alla partita: </a>
-					<ul>
-						<li th:each="giocatoreAssente : ${giocatoriAssenti}">
+				<div class="flexbox-vertical-scrollable">
+					<h4>Giocatori presenti alla partita: </h4>
+			    	<ul>
+						<li th:each="prestazione : ${prestazioni}">
 							<div>
-								<a th:text="${giocatoreAssente.nome} + ' ' + ${giocatoreAssente.cognome}"></a>
-								<a th:href="@{'/admin/formNuovaPrestazione'+'/'+${partita.id}+'/'+${giocatoreAssente.id}}">aggiungi</a>
+								<span th:text="${prestazione.giocatore.nome} + ' ' + ${prestazione.giocatore.cognome}"></span>
+								<a th:href="@{'/admin/formConfirmDeletePrestazione'+'/'+${prestazione.id}}">-cancella</a>
 							</div>
 						</li>
 					</ul>
