@@ -19,7 +19,7 @@ position: absolute;
   text-align: center;
   color: white;
 left: 680px; 
-top:80px;
+top:180px;
 text-decoration: solid;
 font-size: 40px;
 }	
@@ -27,6 +27,7 @@ font-size: 40px;
 .maglietta{
 	position: absolute;
 	left:600px;
+	top:100px;
 }
 
 

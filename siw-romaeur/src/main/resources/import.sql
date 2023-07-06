@@ -4,7 +4,7 @@ insert into giocatore values(nextval('giocatore_seq'), 'Gai', '10/02/2001', 'Dan
 insert into giocatore values(nextval('giocatore_seq'), 'Gramegna', '10/02/2001', 'Giulio', 11, 'Playmaker');
 insert into giocatore values(nextval('giocatore_seq'), 'Melchiorri', '10/05/1998', 'Matteo', 9, 'Ala piccola');
 
-insert into partita values(nextval('partita_seq'), '11/05/2023', 'Colleferro', 68, 63);
+insert into partita values(nextval('partita_seq'), '05/11/2023', 'Colleferro', 68, 63);
 
 
 
