@@ -20,30 +20,32 @@
 	</header>
 	
 	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
-	<h1>Aggiungi un giocatore</h1>
-	<form th:action="@{/admin/giocatore}" method="POST" th:object="${giocatore}" enctype="multipart/form-data">
-		<div th:if="${#fields.hasGlobalErrors()}">
-			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-		</div>
-		<div>
-			<label>Nome: </label> 
-			<span><input type="text" th:field="${giocatore.nome}" /></span>
-			<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-		</div>
-
-		<div>
-			<label>Cognome: </label> 
-			<span><input type="text" th:field="${giocatore.cognome}" /></span>
-			<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
-		</div>
-		
-		<div>
-			<label>Data di nascita: </label>
-			<span><input type="date" th:field="${giocatore.dataDiNascita}" /></span>
-			<span th:if="${#fields.hasErrors('dataDiNascita')}" th:errors="*{dataDiNascita}"></span>
-		</div>
-		
-		<div>
+	
+	
+	
+        
+        <div class="section">
+			<div class="flexbox-container-horizontal-c">
+				<div class="flex-item-formNew">
+					<h1>Aggiungi un giocatore</h1>
+					<form th:action="@{/admin/giocatore}" method="POST" th:object="${giocatore}" enctype="multipart/form-data">
+				  		<div th:if="${#fields.hasGlobalErrors()}">
+							<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+						</div>
+						
+						<div>
+							<label>Nome</label> 
+							<span><input type="text" th:field="${giocatore.nome}" /></span>
+						    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+						</div>
+				
+						<div>
+							<label>Cognome:</label> 
+							<span><input type="text" th:field="${giocatore.cognome}" /></span>
+						    <span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
+						</div>
+						
+						<div>
 		     <label for="giocatore.ruolo">Ruolo:</label>
 			 <select id="giocatore.ruolo" name="ruolo">
 			    <option value="Playmaker">Playmaker</option>
@@ -54,20 +56,31 @@
 			 </select>
 			 <span th:if="${#fields.hasErrors('ruolo')}" th:errors="*{ruolo}"></span>
 		</div>
-		
-		<div>
-			<label>Numero maglia: </label> 
-			<span><input type="text" th:field="${giocatore.numeroMaglia}" /></span>
-			<span th:if="${#fields.hasErrors('numeroMaglia')}" th:errors="*{numeroMaglia}"></span>
+						
+						<div>
+							<label>Numero di maglia:</label> 
+							<span><input type="text" th:field="${giocatore.numeroMaglia}" /></span>
+						    <span th:if="${#fields.hasErrors('numeroMaglia')}" th:errors="*{numeroMaglia}"></span>
+						</div>
+						<div>
+				        	<input type="file" th:name="image" accept="/image*" onchange="loadFile(event)">
+				        </div>
+				        <p><img id="output" width="50"/></p>
+					      <script>
+					          var loadFile = function(event) {
+					              var image = document.getElementById('output');
+					              image.src=URL.createObjectURL(event.target.files[0]);
+					          };
+					      </script>
+						<div>
+							<span><button class="button-green" type="submit">Conferma</button></span>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
-				
-		<div>
-        	<input type="file" th:name="image" accept="/image*">
-        </div>
 
-		<div>
-			<span><button type="submit">Conferma</button></span>
-		</div>
+		
 	</form>
 	<footer></footer>
 </body>
