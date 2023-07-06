@@ -9,19 +9,16 @@
 </head>
 
 <body>
-	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}" class="username"></span>
-			<a href="/logout">Logout</a>
+	<div class="schermo-vertical">
+		<div class="header">
+			<div class="text" th:if="${userDetails}">
+				<span th:text="${userDetails.username}" class="username"></span>
+				<a href="/logout">Logout</a>
+			</div>
+			<div class="text" th:unless="${userDetails}">
+				<a href="/login">Login</a>
+			</div>
 		</div>
-		<div th:unless="${userDetails}">
-			<a href="/login">Login</a>
-		</div>
-	</header>
-	
-	<div><a href="/"><img src="/images/logo-Roma-Eur.png" width="5%"/></a></div>
-	
-	
 	
         
         <div class="section">
@@ -46,16 +43,22 @@
 						</div>
 						
 						<div>
-		     <label for="giocatore.ruolo">Ruolo:</label>
-			 <select id="giocatore.ruolo" name="ruolo">
-			    <option value="Playmaker">Playmaker</option>
-			    <option value="Guardia tiratrice">Guardia tiratrice</option>
-			    <option value="Ala piccola">Ala piccola</option>
-			    <option value="Ala grande">Ala grande</option>
-			    <option value="Centro">Centro</option>
-			 </select>
-			 <span th:if="${#fields.hasErrors('ruolo')}" th:errors="*{ruolo}"></span>
-		</div>
+		            <label for="giocatore.ruolo">Ruolo:</label>
+			        <select id="giocatore.ruolo" name="ruolo">
+			            <option value="Playmaker">Playmaker</option>
+			            <option value="Guardia tiratrice">Guardia tiratrice</option>
+			            <option value="Ala piccola">Ala piccola</option>
+			            <option value="Ala grande">Ala grande</option>
+			           <option value="Centro">Centro</option>
+			      </select>
+			      <span th:if="${#fields.hasErrors('ruolo')}" th:errors="*{ruolo}"></span>
+		           </div>
+		           
+		           <div>
+							<label>Data di nascita:</label> 
+							<span><input type="date" th:field="${giocatore.dataDiNascita}" /></span>
+						    <span th:if="${#fields.hasErrors('dataDiNascita')}" th:errors="*{dataDiNascita}"></span>
+						</div>
 						
 						<div>
 							<label>Numero di maglia:</label> 
@@ -81,8 +84,9 @@
 		</div>
 
 		
-	</form>
 	<footer></footer>
+		</div>
+
 </body>
 
 </html>
