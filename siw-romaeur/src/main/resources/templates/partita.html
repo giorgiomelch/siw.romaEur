@@ -78,15 +78,11 @@
 							<span><button class="button1" type="submit">modifica prestazioni</button></span>
 						</div>
 					</form>
-					
-					<a th:if="${credenziali!=null && credenziali.isAdmin()}">
-						<a th:href="@{'/admin/formUpdatePartita/' + ${partita.id}}">Inserisci/elimina prestazione</a>
-					</a>
 				</div>
 			</div>
 		</div>
 		<div class="imgAbsolute">
-			<a href="/"><img src="/images/back.png" width="40%"/></a>
+			<a href="/calendario"><img src="/images/back.png" width="40%"/></a>
 		</div>
 		<div class="footer"></div>
 	</div>

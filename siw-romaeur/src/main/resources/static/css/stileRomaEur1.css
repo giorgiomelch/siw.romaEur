@@ -58,7 +58,7 @@ li{
 .section{
 	min-height: 82%;
 	max-height: 82%;
-	background-color: whitesmoke;
+	background-color: white;
 	justify-content: center;
 }
 
@@ -92,7 +92,7 @@ li{
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	background-color: whitesmoke;
+	background-color: white;
 }
 .flexbox-container-horizontal-scrollable{
 	width: 100%;
