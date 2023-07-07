@@ -89,11 +89,11 @@ public class GiocatoreController {
 	public String updateGiocatoreData(@PathVariable("idGiocatore") Long idGiocatore, 
 			@Valid @ModelAttribute("giocatore") Giocatore newGiocatore, BindingResult bindingResult,
 			MultipartFile image, Model model) {
-		this.giocatoreValidator.validate(newGiocatore, bindingResult);
+		if(!this.giocatoreService.sameGiocatore(idGiocatore, newGiocatore))
+			this.giocatoreValidator.validate(newGiocatore, bindingResult);
 		if(!bindingResult.hasErrors()) {
 			model.addAttribute("giocatore", this.giocatoreService.update(idGiocatore, newGiocatore, image));
 
-			//DA ELIMINARE QUANDO SI CREERA' UNA FORM ADMIN PER GESTIRE I GIOCATORI 
 			model.addAttribute("roster",this.giocatoreService.findAll());
 			return "/roster.html";
 		}

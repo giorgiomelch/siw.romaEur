@@ -73,5 +73,10 @@ public class GiocatoreService {
 			this.giocatoreRepository.save(giocatore);
 			} catch(IOException e) {}
 	}
+	public boolean sameGiocatore(Long idGiocatore, Giocatore newGiocatore) {
+		Giocatore giocatore = this.giocatoreRepository.findById(idGiocatore).get();
+		return giocatore.getNome().equals(newGiocatore.getNome()) && giocatore.getCognome().equals(newGiocatore.getCognome())
+				&& giocatore.getDataDiNascita().equals(newGiocatore.getDataDiNascita());
+	}
 		
 }
