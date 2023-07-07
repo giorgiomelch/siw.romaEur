@@ -73,12 +73,31 @@ table,tr,th,td{
 	display: flex;
 	background-color: red;
 }
+.container-horizontal{
+	flex-direction: row;
+	font-size: 1.2em;
+}
 .flexbox-container-horizontal{
 	height: 100%;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
+}
+.flexbox-container-horizontal-halfHigh{
+	height: 50%;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+.flexbox-container-horizontal-start{
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: start;
+	justify-content: start;
 }
 .flexbox-container-horizontal-100h{
 	margin-top: 20px;
@@ -87,6 +106,70 @@ table,tr,th,td{
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
+}
+.flexbox-container-vertical{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.flexbox-container-vertical-centered{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+.flexbox-container-vertical-40w{
+	height: 100%;
+	width: 40%;
+	display: flex;
+	flex-direction: column;
+}
+.maglia-container-vertical-40w{
+	height: 100%;
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+ 	background-image: url('/images/CanottaRossa.png');
+ 	background-position: start;
+ 	background-position-x: left;
+	background-repeat: no-repeat;
+	background-size: 20%;
+}
+.numeroMaglia{
+	margin-top: 50px;
+	margin-left: 38px;
+	font-size: 2em;
+}
+.numeroMaglia span{
+	color: aliceblue;
+}
+.flexbox-container-vertical-20w{
+	height: 100%;
+	width: 20%;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+}
+.flex-item-1{
+	width: 33%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	align-items: center;
+}
+.flex-item-1 img{ 
+ 	max-width: 98%; 
+  	max-height: 98%; 
+	border: 4px solid black;
+	border-radius: 10px;
+}
+.flex-item-2{
+	height: 100%;
+	width: 67%;
+	flex-direction: column;
 }
 .flexbox-container-vertical-100vh-100pxh{
 	height: 100%-100px;
@@ -137,4 +220,19 @@ table,tr,th,td{
 	position: absolute;
 	left: 1200px;
 	bottom: 100px;
+}
+
+.maglia{
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+ 	background-image: url('/images/CanottaRossa.png');
+ 	background-position: 90px;
+	background-repeat: no-repeat;
+	background-size: 30%;
+	background-color: green;
+}
+.b{
+	background-color: blue;
 }

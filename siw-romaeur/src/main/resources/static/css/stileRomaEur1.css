@@ -318,6 +318,11 @@ table,tr,th,td{
   	font-size: 1em;
 }
 
+.imgAbsolute{
+	position: absolute;
+	left: 1200px;
+	bottom: 100px;
+}
 
 
 
