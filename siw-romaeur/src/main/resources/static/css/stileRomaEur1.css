@@ -236,6 +236,30 @@ li{
 	overflow: auto;
 	padding: 40px;
 }
+.flex-container-item-vertical{
+	height: 370px;
+	width: 370px;
+	display: flex;
+	flex-direction: column;
+	border: 4px solid black;
+	background-color:whitesmoke;
+	overflow: auto;
+	padding: 40px;
+}
+.tabellino{
+	display: flex;
+	justify-content: center;
+}
+table,tr,th,td{
+	border: 1px solid;
+	width:700px;
+	border-color: black;
+}
+.spazio{
+	height: 20px;
+}
+
+
 
 .button-red {
 	width: 120px;
