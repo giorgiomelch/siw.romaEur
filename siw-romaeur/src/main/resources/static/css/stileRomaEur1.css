@@ -259,7 +259,34 @@ table,tr,th,td{
 	height: 20px;
 }
 
-
+.containerGiocatore{
+	height: 250px;
+	width: 180px;
+	flex-direction: column;
+	background-color: whitesmoke;
+	margin-left: 80px;
+	margin-bottom: 20px;
+	border: 2px solid black;
+}
+.unQuartoGiocatore{
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 20%;
+	background-color: orangered;
+}
+.treQuartiGiocatore{
+	display: flex;
+	text-align: center;
+	align-items: start;
+	justify-content: center;
+	width: 100%;
+	height: 80%;
+	max-height: 100%;
+	max-width: 80%;
+}
 
 .button-red {
 	width: 120px;
@@ -275,6 +302,7 @@ table,tr,th,td{
   	margin: 5px;
   	font-size: 1em;
 }
+
 .button-red2 {
 	width: 110px;
 	height: 40px;
@@ -283,6 +311,20 @@ table,tr,th,td{
   	color: black;
  	text-align: center;
  	border: 4px double orangered;
+ 	border-radius: 10px;
+	font-size: 14px;
+ 	cursor: pointer;
+  	margin: 5px;
+  	font-size: 1em;
+}
+.button-orange {
+	width: 120px;
+	height: 40px;
+ 	display: inline-block;
+  	background-color: rgb(255, 128, 0);
+  	color: black;
+ 	text-align: center;
+ 	border: 4px double rgb(255, 128, 64);
  	border-radius: 10px;
 	font-size: 14px;
  	cursor: pointer;

@@ -2,16 +2,13 @@
 <html>
 
 <head>
-	<title>Roster</title>
-	<link rel="stylesheet" href="/css/roster.css" />
+	<title>Calendario</title>
+	<link rel="stylesheet" href="/css/stileRomaEur1.css" />
 </head>
 
 <body>
-	
-	<div class="esterno">
-
-
-	<div class="header">
+	<div class="schermo-vertical">
+		<div class="header">
 			<div class="text" th:if="${userDetails}">
 				<span th:text="${userDetails.username}" class="username"></span>
 				<a href="/logout">Logout</a>
@@ -21,33 +18,68 @@
 			</div>
 		</div>
 		
-			<div class="left"></div>
-			<div class="center">
-	<h1>Roster</h1>
-	<div th:if="${roster==null || roster.isEmpty()}">Non ci sono giocatori nel sistema</div>
-	<ul>
-		<li th:each="giocatore : ${roster}">
-			<a th:href="@{'/giocatore' + '/' + ${giocatore.id}}"
-				th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}">
-			</a>
-			<a th:if="${credenziali!=null && credenziali.isAdmin()}">
-				<a th:href="@{'/admin/formConfirmDeleteGiocatore/' + ${giocatore.id}}">elimina</a>
-				<a th:href="@{'/admin/formUpdateMovieData/'+${giocatore.id}}"> / Modifica giocatore</a>
-			</a>
-		</li>
-	</ul>
-		<a th:if="${credenziali!=null && credenziali.isAdmin()}">
-			<a th:href="@{/admin/formNewGiocatore}">Aggiungi giocatore</a>
-		</a>
+		<div class="section">
+			<div class="flexbox-container-vertical">
+				<div class="textCentered"><h1>Roster</h1></div>
+				<div class="flexbox-container-horizontal-c">
+					<div class="flexbox-container-horizontal-scrollable">
+						
+						<div th:if="${credenziali!=null && credenziali.isAdmin()}" class="containerGiocatore">
+							<div class="spazio"></div>
+							<div class="textCentered">
+								Inserisci un nuovo giocatore
+							</div>
+							<div class="spazio"></div>
+							<div class="textCentered">
+								<a href="/admin/formNewGiocatore"><img src="/images/plus.png" width="50%"></a>
+							</div>
+						</div>
+						<li th:each="giocatore : ${roster}">
+							<div class="containerGiocatore">
+								<div class="flexbox-container-vertical">
+									
+									<div class="treQuartiGiocatore">
+										<div>
+											<a th:href="@{'/giocatore/'+${giocatore.id}}">
+												<img th:src="@{'data:image;base64,' + ${giocatore.imageString}}" width="100%">
+											</a>
+										</div>
+									</div>
+									<div class="unQuartoGiocatore">
+										<div class="riempiTutto-center">
+											<a th:href="@{'/giocatore/'+${giocatore.id}}" th:text="${giocatore.nome}+ ' ' +${giocatore.cognome}"></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="simpleContainer-elementsCentered">
+							<form th:if="${credenziali!=null && credenziali.isAdmin()}" 
+									th:action="@{'/admin/formConfirmDeleteGiocatore/' + ${giocatore.id}}" method="GET">
+								 <div class="textCentered">
+									<span><button class="button-red" type="submit">elimina</button></span>
+								</div>
+							</form>
+							</div>
+							<div class="simpleContainer-elementsCentered">
+							<form th:if="${credenziali!=null && credenziali.isAdmin()}" 
+									th:action="@{'/admin/formUpdateGiocatoreData/' + ${giocatore.id}}" method="GET">
+								 <div class="textCentered">
+									<span><button class="button-orange" type="submit">modifica</button></span>
+								</div>
+							</form>
+							</div>
+						</li>
+					</div>
+				</div>
+				<div class="simpleContainer-elementsEnd">
+					<a href="/"><img src="/images/home.png" width="3%"/></a>
+				</div>
 			</div>
-			<div class="right"></div>
-
-
-	
+			
+			
+		</div>
+		<div class="footer"></div>
 	</div>
-		<footer class="footer"></footer>
-
-	
 </body>
 
 </html>
