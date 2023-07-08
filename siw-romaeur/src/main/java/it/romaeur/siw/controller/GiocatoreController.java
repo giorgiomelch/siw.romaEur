@@ -23,6 +23,7 @@ public class GiocatoreController {
 	@Autowired PrestazioneService prestazioneService;
 	@Autowired GiocatoreValidator giocatoreValidator;
 
+
 	@GetMapping("/roster")
 	public String roster(Model model) {
 		model.addAttribute("roster", this.giocatoreService.findAll());
@@ -76,7 +77,7 @@ public class GiocatoreController {
 		return "roster.html";
 	}
 
-	@GetMapping("/admin/formUpdateMovieData/{idGiocatore}")
+	@GetMapping("/admin/formUpdateGiocatoreData/{idGiocatore}")
 	public String formUpdateMovieData(@PathVariable("idGiocatore") Long idGiocatore, Model model) {
 		Giocatore giocatore=this.giocatoreService.findById(idGiocatore);
 		if(giocatore==null)
