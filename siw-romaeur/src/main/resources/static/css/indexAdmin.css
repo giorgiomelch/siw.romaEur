@@ -54,7 +54,6 @@ li{
 	align-items: center;
 	text-align: center;
 	font-size: 1.2em;
-    background-color: #F96565;
 
 }
 .section{
@@ -99,12 +98,12 @@ li{
 	justify-content: center;
 	background-color: white;
 }
-.flexbox-container-horizontal-sb{
+.flexbox-container-horizontal-se{
 	height: 100%;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: space-evenly;
 }
 .flexbox-container-horizontal-scrollable{
 	width: 100%;
