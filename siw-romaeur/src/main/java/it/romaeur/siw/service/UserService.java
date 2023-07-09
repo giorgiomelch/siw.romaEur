@@ -6,10 +6,15 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.romaeur.siw.model.Credentials;
+import it.romaeur.siw.model.Partita;
 import it.romaeur.siw.model.User;
+import it.romaeur.siw.model.VotoMvp;
 import it.romaeur.siw.repository.UserRepository;
 
 /**
@@ -20,6 +25,8 @@ public class UserService {
 
     @Autowired
     protected UserRepository userRepository;
+    @Autowired
+    private CredentialsService credentialsService;
 
     /**
      * This method retrieves a User from the DB based on its ID.
@@ -56,4 +63,20 @@ public class UserService {
             result.add(user);
         return result;
     }
+    
+    @Transactional
+    public User getCurrentUser() {
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		return credentials.getUser();
+	}
+    
+    public boolean controllaVotiDoppi(Partita partita) {
+		User user=this.getCurrentUser();
+		for(VotoMvp v: user.getVoti()) {
+			if(v.getPartitaVotata().equals(partita))
+				return true;
+		}
+		return false;
+	}
 }

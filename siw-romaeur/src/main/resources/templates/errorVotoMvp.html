@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Partita</title>
+	<link rel="stylesheet" href="/css/stileRomaEur2.css" />
+</head>
+
+<body>
+	<div class="schermo-vertical">
+		<div class="header">
+			<div class="text" th:if="${userDetails}">
+				<span th:text="${userDetails.username}" class="username"></span>
+				<a href="/logout">Logout</a>
+			</div>
+			<div class="text" th:unless="${userDetails}">
+				<a href="/login">Login</a>
+			</div>
+		</div>
+		
+
+
+<div class="imgAbsolute">
+			<a th:href="'/partita/' + ${partita.id}"><img src="/images/back.png" width="40%"/></a>
+		</div>
+		
+		</body>
+</html>

@@ -108,6 +108,18 @@ public class Giocatore {
 	public void setPrestazioni(List<Prestazione> prestazioni) {
 		this.prestazioni = prestazioni;
 	}
+	
+	
+	public List<VotoMvp> getVoti() {
+		return voti;
+	}
+
+
+	public void setVoti(List<VotoMvp> voti) {
+		this.voti = voti;
+	}
+
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(cognome, dataDiNascita, nome);

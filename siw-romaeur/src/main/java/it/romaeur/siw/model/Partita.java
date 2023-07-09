@@ -107,6 +107,16 @@ public class Partita {
 		this.prestazioni = prestazioni;
 	}
 	
+	
+	
+	public List<VotoMvp> getVoti() {
+		return voti;
+	}
+
+	public void setVoti(List<VotoMvp> voti) {
+		this.voti = voti;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(data, nomeSquadraAvversaria, punteggioA, punteggioB);

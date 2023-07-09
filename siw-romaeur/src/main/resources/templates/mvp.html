@@ -23,8 +23,10 @@
 	<h1>Vota il tuo mvp</h1>
 	<form th:action="@{'/votoMvp/' + ${partita.id}}" method="POST" th:object="${voto}">
 		
+		
+		
 			<li th:each="giocatore : ${giocatori}">
-			<input type="radio" name="voto" th:value="${giocatore.id}"><span th:text="${giocatore.nome} + ' ' +${giocatore.cognome}"></span>
+			<input type="radio" name="idVoto" th:value="${giocatore.id}"><span th:text="${giocatore.nome} + ' ' +${giocatore.cognome}"></span>
 
 			</li>
 		
@@ -33,7 +35,6 @@
 	</form>
 	
 	
-	<span th:text="${voto}"></span>
 	
 
 </body>

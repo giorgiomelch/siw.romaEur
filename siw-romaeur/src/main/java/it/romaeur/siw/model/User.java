@@ -55,6 +55,16 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	
+
+	public Set<VotoMvp> getVoti() {
+		return voti;
+	}
+
+	public void setVoti(Set<VotoMvp> voti) {
+		this.voti = voti;
+	}
 
 	@Override
 	public int hashCode() {

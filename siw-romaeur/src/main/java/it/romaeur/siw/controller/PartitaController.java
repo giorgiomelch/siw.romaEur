@@ -12,11 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import it.romaeur.siw.controller.validator.PartitaValidator;
+import it.romaeur.siw.model.Giocatore;
 import it.romaeur.siw.model.Partita;
+import it.romaeur.siw.model.User;
 import it.romaeur.siw.model.VotoMvp;
+import it.romaeur.siw.repository.VotoMvpRepository;
 import it.romaeur.siw.service.GiocatoreService;
 import it.romaeur.siw.service.PartitaService;
 import it.romaeur.siw.service.PrestazioneService;
+import it.romaeur.siw.service.UserService;
+import it.romaeur.siw.service.VotoMvpService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @Controller
@@ -25,7 +31,11 @@ public class PartitaController {
 	@Autowired PartitaValidator partitaValidator;
 	@Autowired GiocatoreService giocatoreService;
 	@Autowired PartitaService partitaService;
-	@Autowired PrestazioneService prestazioneService; 
+	@Autowired PrestazioneService prestazioneService; 	
+	@Autowired VotoMvpRepository votoMvpRepository;
+	@Autowired VotoMvpService votoMvpService;
+	@Autowired UserService userService; 
+
 	
 	
 	
@@ -52,6 +62,7 @@ public class PartitaController {
 		return "admin/formNuovaPartita.html";
 	} 
 	
+	@Transactional
 	@GetMapping("/partita/{id}")
 	public String getPartita(@PathVariable("id") Long id, Model model) {
 		Partita partita = this.partitaService.findById(id);
@@ -59,6 +70,7 @@ public class PartitaController {
 			return "partitaError.html";
 		model.addAttribute("partita", partita);
 		model.addAttribute("prestazioni",partita.getPrestazioni());
+		model.addAttribute("mvpPartita",this.votoMvpService.calcolaMvp(id));
 		return "partita.html";
 	}
 	
@@ -98,20 +110,5 @@ public class PartitaController {
 		return "calendario.html";
 	}
 	
-	@GetMapping("/mvp/{idPartita}")
-	public String mvp(@PathVariable ("idPartita") Long idPartita, Model model) {
-		model.addAttribute("giocatori",this.giocatoreService.findAll());	
-		Partita partita = this.partitaService.findById(idPartita);
-		model.addAttribute("partita",partita );
-		return "mvp.html";
-	}
 	
-	@PostMapping("/votoMvp/{idPartita}")
-	public String newVotoMvp( @RequestParam Long voto, Model model) {
-		model.addAttribute("giocatori",this.giocatoreService.findAll());
-		model.addAttribute("voto",voto);
-
-		
-		return "index.html";
-	} 
 }
