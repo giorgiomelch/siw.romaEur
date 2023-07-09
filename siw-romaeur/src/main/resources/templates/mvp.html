@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		New voto mvp
+	</title>
+	<link rel="stylesheet" href="/css/mvp.css" />
+</head>
+
+<body>
+	<div class="header">
+			<div class="text" th:if="${userDetails}">
+				<span th:text="${userDetails.username}" class="username"></span>
+				<a href="/logout">Logout</a>
+			</div>
+			<div class="text" th:unless="${userDetails}">
+				<a href="/login">Login</a>
+			</div>
+		</div>
+	
+	
+	<h1>Vota il tuo mvp</h1>
+	<form th:action="@{'/votoMvp/' + ${partita.id}}" method="POST" th:object="${voto}">
+		
+			<li th:each="giocatore : ${giocatori}">
+			<input type="radio" name="voto" th:value="${giocatore.id}"><span th:text="${giocatore.nome} + ' ' +${giocatore.cognome}"></span>
+
+			</li>
+		
+			<span><button class="button-green" type="submit">Conferma</button></span>
+									
+	</form>
+	
+	
+	<span th:text="${voto}"></span>
+	
+
+</body>
+
+</html>

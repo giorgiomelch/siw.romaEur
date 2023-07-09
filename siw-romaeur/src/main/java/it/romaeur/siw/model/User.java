@@ -1,6 +1,9 @@
 package it.romaeur.siw.model;
 
 import java.util.Objects;
+import java.util.Set;
+
+import jakarta.persistence.OneToMany;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +21,9 @@ public class User {
 	private String name;
 	private String surname;
 	private String email;
+	
+	@OneToMany(mappedBy = "utente")
+	private Set<VotoMvp> voti;
 
     public Long getId() {
 		return id;

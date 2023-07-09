@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import it.romaeur.siw.controller.validator.PartitaValidator;
 import it.romaeur.siw.model.Partita;
+import it.romaeur.siw.model.VotoMvp;
 import it.romaeur.siw.service.GiocatoreService;
 import it.romaeur.siw.service.PartitaService;
 import it.romaeur.siw.service.PrestazioneService;
@@ -95,4 +97,21 @@ public class PartitaController {
 		model.addAttribute("calendario", this.partitaService.findAll());
 		return "calendario.html";
 	}
+	
+	@GetMapping("/mvp/{idPartita}")
+	public String mvp(@PathVariable ("idPartita") Long idPartita, Model model) {
+		model.addAttribute("giocatori",this.giocatoreService.findAll());	
+		Partita partita = this.partitaService.findById(idPartita);
+		model.addAttribute("partita",partita );
+		return "mvp.html";
+	}
+	
+	@PostMapping("/votoMvp/{idPartita}")
+	public String newVotoMvp( @RequestParam Long voto, Model model) {
+		model.addAttribute("giocatori",this.giocatoreService.findAll());
+		model.addAttribute("voto",voto);
+
+		
+		return "index.html";
+	} 
 }

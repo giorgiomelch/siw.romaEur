@@ -43,6 +43,10 @@ public class Partita {
 	private List<Prestazione>prestazioni;
 	
 	
+	@OneToMany(mappedBy="partitaVotata")
+	private List<VotoMvp> voti;
+	
+	
 	
 	
 	

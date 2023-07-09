@@ -48,6 +48,9 @@ public class Giocatore {
 	@OneToMany(mappedBy= "giocatore",cascade= {CascadeType.REMOVE})
 	private List<Prestazione> prestazioni;
 	
+	@OneToMany(mappedBy="giocatoreVotato")
+	private List<VotoMvp> voti;
+	
 	public Giocatore(){
 		this.prestazioni= new ArrayList<Prestazione>();
 	}
