@@ -39,7 +39,7 @@
     
   
 <li th:each="giocatore : ${giocatori}">
-			<input type="radio" name="idVoto" th:value="${giocatore.id}"><span th:text="${giocatore.nome} + ' ' +${giocatore.cognome}"></span>
+			<input type="radio" name="idVoto" th:value="${giocatore.id}" checked><span th:text="${giocatore.nome} + ' ' +${giocatore.cognome}"></span>
 
 			</li>
 			</ul>
@@ -48,10 +48,10 @@
 	
 						</div>
 
-	
+		<span class="bottone"><button class="button-green" type="submit">Conferma</button></span>
+
 		</form>
 
-	<span class="bottone"><button class="button-green" type="submit">Conferma</button></span>
 
 					</div>
 										</div>
