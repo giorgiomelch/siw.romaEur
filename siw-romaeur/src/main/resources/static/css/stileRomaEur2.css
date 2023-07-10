@@ -236,3 +236,11 @@ table,tr,th,td{
 .b{
 	background-color: blue;
 }
+
+.testoCentrato{
+	justify-content: center;
+	padding: 10px;
+	align-items: center;
+	text-align: center;
+	font-size: 2em;
+}

@@ -78,6 +78,14 @@
 							<span><button class="button1" type="submit">modifica prestazioni</button></span>
 						</div>
 					</form>
+					<div class="testoCentrato">
+					
+	    <span th:text="'Mvp della partita: '"></span>
+	      <span th:if="${mvpPartita != null}"
+	     th:text="${mvpPartita.getNome()} + ' ' + ${mvpPartita.getCognome()}"></span>
+			<div><a th:href="'/mvp/' + ${partita.id}">Vota il tuo Mvp!</a></div>
+
+</div>
 				</div>
 			</div>
 		</div>
@@ -85,11 +93,6 @@
 			<a href="/calendario"><img src="/images/back.png" width="40%"/></a>
 		</div>
 	
-	    <span th:text="'Mvp della partita: '"></span>
-	      <span th:if="${mvpPartita != null}"
-	     th:text="${mvpPartita.getNome()} + ' ' + ${mvpPartita.getCognome()}"></span>
-
-			<a th:href="'/mvp/' + ${partita.id}">Selezione mvp</a>
 
 		<div class="footer"></div>
 	</div>
