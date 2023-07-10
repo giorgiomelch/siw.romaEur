@@ -18,7 +18,9 @@ a:hover {
 }
 
 li{
+	display: inline-block;
 	list-style-type: none;
+	text-align: left;
 }
 
 .schermo-vertical{
@@ -181,12 +183,13 @@ li{
 .flex-item-box{
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	width: 200px;
+	justify-content: center;
+	text-align: center;
+	width: 300px;
 	min-width: 200px;
-	height: 250px;
+	height: 350px;
 	background-color: whitesmoke;
-	margin-left: 80px;
+	margin-left: 40%;
 	margin-bottom: 20px;
 	border: 2px solid black;
 }
@@ -336,7 +339,6 @@ table,tr,th,td{
 .button-green {
 	width: 110px;
 	height: 40px;
- 	display: inline-block;
   	background-color: lightgreen;
   	color: rgb(54, 137, 96);
  	text-align: center;
@@ -368,35 +370,28 @@ table,tr,th,td{
 	bottom: 100px;
 }
 
+.immagineProfilo{
+	display:flex;
+    height: 250px;
+	width: 180px;
+    object-fit: cover
+     }
+     
+     .bottone{
+		 display: flex;
+		 justify-content: center;
+	 }
+	 
+	 .elencoGiocatori{
+		   text-align: center;
+
+	 }
+	 
+	 .myUL{
+		display: inline-block;
+          text-align: left;
+	 }
 
 
 
-
-
-
-
-/*DA CANCELLARE APPENA EFFETTUATO LE MODIFICHE HTML PER OGNI TEMPLATE*/
-header {
-  background-color: red;
-    color: black;
-    height: 30px;
-    width: 100%;
-    text-align: right;
-	justify-content: end;
-	font-size: 1em;
-}
-
-footer{
-	background-color: red;
-	color: white;
-  	height: 20px;
-  	width: 100%;
-  	position: fixed;
-  	left: 0;
-  	bottom: 0;
-}
-label {
-	width: 8em;
-	display: inline-block;
-}
 
