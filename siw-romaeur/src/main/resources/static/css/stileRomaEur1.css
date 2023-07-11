@@ -262,6 +262,7 @@ table,tr,th,td{
 .containerGiocatore{
 	height: 250px;
 	width: 180px;
+	min-width: 180px;
 	flex-direction: column;
 	background-color: whitesmoke;
 	margin-left: 80px;
