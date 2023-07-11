@@ -9,16 +9,29 @@
 </head>
 
 <body>
-	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}" class="username"></span>
-			<a href="/logout">Logout</a>
+	<div class="schermo-vertical">
+		<div class="header">
+			<div class="text" th:if="${userDetails}">
+				<span th:text="${userDetails.username}" class="username"></span>
+				<a href="/logout">Logout</a>
+			</div>
+			<div class="text" th:unless="${userDetails}">
+				<a href="/login">Login</a>
+			</div>
 		</div>
-		<div th:unless="${userDetails}">
-			<a href="/login">Login</a>
+		
+		<div class="section">
+			<div class="flexbox-container-horizontal-c">
+				<div class="textCentered">
+					<h1>PARTITA NON TROVATA</h1>
+				</div>
+			</div>
 		</div>
-	</header>
-	<h1>PARTITA NON TROVATA</h1>
+		<div class="imgAbsolute">
+			<a href="/"><img src="/images/home.png" width="40%"/></a>
+		</div>
+		<div class="footer"></div>
+	</div>
 </body>
 
 </html>
