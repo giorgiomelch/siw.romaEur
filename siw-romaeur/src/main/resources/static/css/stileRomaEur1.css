@@ -371,7 +371,7 @@ table,tr,th,td{
 
 .immagineProfilo{
 	display:flex;
-    height: 250px;
+    height: 230px;
 	width: 180px;
     object-fit: cover
      }
