@@ -347,35 +347,11 @@ table,tr,th,td{
 	bottom: 100px;
 }
 
-
-
-
-
-
-
-
-/*DA CANCELLARE APPENA EFFETTUATO LE MODIFICHE HTML PER OGNI TEMPLATE*/
-header {
-  background-color: red;
-    color: black;
-    height: 30px;
-    width: 100%;
-    text-align: right;
-	justify-content: end;
-	font-size: 1em;
+.margin-left-12{
+	padding-left: 12px;
 }
 
-footer{
-	background-color: red;
-	color: white;
-  	height: 20px;
-  	width: 100%;
-  	position: fixed;
-  	left: 0;
-  	bottom: 0;
-}
-label {
-	width: 8em;
-	display: inline-block;
-}
+
+
+
 
