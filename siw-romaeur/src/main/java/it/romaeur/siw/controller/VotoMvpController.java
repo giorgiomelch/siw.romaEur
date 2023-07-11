@@ -57,6 +57,7 @@ public class VotoMvpController {
 		if (!bindingResult.hasErrors()) {
 		this.votoMvpService.createNewVotoMvp(voto,user,partita,giocatore);
 		model.addAttribute("mvpPartita",this.votoMvpService.calcolaMvp(idPartita));
+		model.addAttribute("prestazioni",partita.getPrestazioni());
 		return "partita.html";
 		}
 		return "errorVotoMvp.html";
