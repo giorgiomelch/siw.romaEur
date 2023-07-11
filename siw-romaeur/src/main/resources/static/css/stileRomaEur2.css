@@ -25,7 +25,7 @@ li{
 	justify-content: center;
 }
 table,tr,th,td{
-	border: 1px solid;
+	border: 2px solid;
 	width:700px;
 	border-color: black;
 }
@@ -63,7 +63,7 @@ table,tr,th,td{
 .section{
 	min-height: 84%;
 	max-height: 84%;
-	background-color: white;
+	background-color:  rgb(249, 100, 78);
 	justify-content: center;
 }
 
