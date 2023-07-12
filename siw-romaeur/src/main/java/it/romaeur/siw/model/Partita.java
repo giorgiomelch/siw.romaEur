@@ -43,7 +43,7 @@ public class Partita {
 	private List<Prestazione>prestazioni;
 	
 	
-	@OneToMany(mappedBy="partitaVotata")
+	@OneToMany(mappedBy="partitaVotata",cascade= {CascadeType.REMOVE})
 	private List<VotoMvp> voti;
 	
 	

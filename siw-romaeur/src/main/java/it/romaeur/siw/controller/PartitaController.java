@@ -8,14 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import it.romaeur.siw.controller.validator.PartitaValidator;
-import it.romaeur.siw.model.Giocatore;
 import it.romaeur.siw.model.Partita;
-import it.romaeur.siw.model.User;
-import it.romaeur.siw.model.VotoMvp;
 import it.romaeur.siw.repository.VotoMvpRepository;
 import it.romaeur.siw.service.GiocatoreService;
 import it.romaeur.siw.service.PartitaService;

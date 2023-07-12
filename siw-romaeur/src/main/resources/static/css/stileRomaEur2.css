@@ -131,15 +131,17 @@ table,tr,th,td{
 	width: 60%;
 	display: flex;
 	flex-direction: column;
- 	background-image: url('/images/CanottaRossa.png');
+	background-color:  rgb(249, 100, 78);
+ 	background-image: url('/images/CanottaRossaNoBorder.png');
  	background-position: start;
  	background-position-x: left;
 	background-repeat: no-repeat;
 	background-size: 20%;
 }
+
 .numeroMaglia{
 	margin-top: 50px;
-	margin-left: 38px;
+	margin-left: 30px;
 	font-size: 2em;
 }
 .numeroMaglia span{
@@ -222,17 +224,7 @@ table,tr,th,td{
 	bottom: 100px;
 }
 
-.maglia{
-	width: 100%;
-	height: 100%;
-	align-items: center;
-	justify-content: center;
- 	background-image: url('/images/CanottaRossa.png');
- 	background-position: 90px;
-	background-repeat: no-repeat;
-	background-size: 30%;
-	background-color: green;
-}
+
 .b{
 	background-color: blue;
 }
