@@ -59,7 +59,7 @@ li{
 .section{
 	min-height: 84%;
 	max-height: 84%;
-	background-color: rgb(249, 100, 78);
+	background-image: linear-gradient( rgb(249, 100, 78),palegoldenrod);
 	justify-content: center;
 }
 
