@@ -38,7 +38,7 @@
   <ul class="myUL">
     
   
-<li th:each="giocatore : ${giocatori}">
+<li th:each="giocatore : ${partita.getGiocatoriDellaPartita()}">
 			<input type="radio" name="idVoto" th:value="${giocatore.id}" checked><span th:text="${giocatore.nome} + ' ' +${giocatore.cognome}"></span>
 
 			</li>
